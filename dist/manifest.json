@@ -1,15 +1,19 @@
 {
-  "manifest_version": 2,
   "name": "betLectio",
-  "version": "1.0.0",
-  "description": "Smarter design for lectio :D",
-  "short_name": "betLectio",
-  "permissions": [ "activeTab", "declarativeContent", "storage", "*://lectio.dk/*" ],
+  "action": {},
+  "manifest_version": 2,
+  "version": "0.1",
+  "description": "Smart design for lectio",
   "content_scripts": [
     {
-      "matches": [ "*://lectio.dk/*" ],
-      "js": [ "script.js" ],
+      "matches": [ "https://www.lectio.dk/*" ],
       "css": [ "style.css" ]
+    },
+    {
+      "matches": [ "https://www.lectio.dk/*" ],
+      "js": [ "script.js" ]
     }
-  ]
+  ],
+  "permissions": [ "https://www.lectio.dk/*", "storage" ],
+  "web_accessible_resources": [ "*" ]
 }
