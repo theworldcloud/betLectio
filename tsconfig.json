@@ -1,7 +1,9 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "lib": [],
+    "lib": [
+      "dom"
+    ],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
