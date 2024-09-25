@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "betLectio",
+  "version": "1.0.0",
+  "description": "Smarter design for lectio :D",
+  "short_name": "betLectio",
+  "permissions": [ "activeTab", "declarativeContent", "storage", "*://lectio.dk/*" ],
+  "content_scripts": [
+    {
+      "matches": [ "*://lectio.dk/*" ],
+      "js": [ "script.js" ],
+      "css": [ "style.css" ]
+    }
+  ]
+}

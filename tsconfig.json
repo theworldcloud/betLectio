@@ -1,0 +1,23 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "lib": [],
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "module": "AMD",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "resolveJsonModule": true,
+    "baseUrl": "./src",
+    "moduleResolution": "node",
+    "declaration": false,
+    "allowJs": false,
+    "emitDeclarationOnly": false,
+    "declarationMap": false,
+    "outFile": "./dist/script.js"
+  },
+  "include": [ "src/scripts/*.ts" ],
+  "exclude": [ "src/build.ts" ]
+}
