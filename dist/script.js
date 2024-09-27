@@ -229,7 +229,7 @@ function _createImpersonationNavLinks(navLinks) {
     if (impersonationText.includes("Eleven") || impersonationText.includes("Læreren")) {
         var text = "";
         if (impersonationText.includes("Eleven")) {
-            var student = impersonationText.split("-")[0].trim()
+            var student = impersonationText.split(" - Skema")[0].trim()
                 .replace("Eleven", "")
                 .trim();
             var _a = student.split(", "), fullname = _a[0], grade = _a[1];
@@ -296,8 +296,21 @@ function _createImpersonationNavLinks(navLinks) {
                 links.splice(3, 0, link);
             if (element.text === "Medlemmer")
                 links.splice(4, 0, link);
+            if (element.text === "Studieplan")
+                links.splice(5, 0, link);
         });
     }
     container.append.apply(container, links);
 }
 Object.keys(header).forEach(function (func) { return header[func](); });
+var init = {};
+init.loginRedirect = function () {
+    var loginButton = Array.from(document.querySelectorAll("header nav a"))
+        .find(function (link) { return link.text === "Log ind"; });
+    if (!loginButton)
+        return;
+    if (window.location.href === loginButton.href)
+        return;
+    window.location.href = loginButton.href;
+};
+Object.keys(init).forEach(function (func) { return init[func](); });

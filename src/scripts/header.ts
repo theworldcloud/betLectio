@@ -1,4 +1,4 @@
-const header: Record<string,() => void> = {};
+const header: Record<string, () => void> = {};
 
 header.editImageLink = function() {
     const image: HTMLAnchorElement | null = document.querySelector(".ls-master-header-logo");
@@ -241,14 +241,14 @@ function _createImpersonationNavLinks(navLinks: Array<HTMLAnchorElement>) {
     const spanElement = document.createElement("span");
     container.append(spanElement);
 
-    const ignoredLinks =  [  "Studieplan", "Studieretninger", "Dokumenter", "Bøger", "Materialer" ];
+    const ignoredLinks =  [ "Studieplan", "Studieretninger", "Dokumenter", "Bøger", "Materialer" ];
     const links: Array<HTMLAnchorElement> = [];
 
     if (impersonationText.includes("Eleven") || impersonationText.includes("Læreren")) {
         let text = "";
 
         if (impersonationText.includes("Eleven")) {
-            const student = impersonationText.split("-")[0].trim()
+            const student = impersonationText.split(" - Skema")[0].trim()
                 .replace("Eleven", "")
                 .trim();
 
@@ -311,12 +311,12 @@ function _createImpersonationNavLinks(navLinks: Array<HTMLAnchorElement>) {
             link.text = `${element.text} (${team})`;
 
             if (link.href === window.location.href) link.classList.add("nav-active");
-
             if (element.text === "Skema") links.splice(0, 0, link);
             if (element.text === "Medlemsskema") links.splice(1, 0, link);
             if (element.text === "Aktiviteter") links.splice(2, 0, link);
             if (element.text === "Modulregnskab") links.splice(3, 0, link);
             if (element.text === "Medlemmer") links.splice(4, 0, link);
+            if (element.text === "Studieplan") links.splice(5, 0, link);
         });
     }
 

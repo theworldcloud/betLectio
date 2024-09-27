@@ -7,7 +7,7 @@ header {
   border: none !important;
   background-color: rgb(229, 229, 229);
   z-index: 10;
-  box-shadow: none !important;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25) !important;
   display: flex !important;
 }
 header .ls-master-header {
@@ -22,7 +22,7 @@ header .ls-master-header {
 header .ls-master-header .ls-master-header-institution {
   position: absolute;
   right: 15px;
-  font-size: 12px;
+  font-size: 11px;
   color: black;
   font-weight: normal;
   display: flex;
@@ -36,6 +36,7 @@ header .ls-master-header .ls-master-header-institution select {
 }
 header .ls-master-header .ls-master-header-institution .ls-user-name {
   position: relative;
+  font-size: 11px;
 }
 header .ls-master-header .ls-master-header-institution .ls-user-name img {
   width: 20px;
@@ -80,11 +81,12 @@ header .nav-active, header nav a:hover {
 header nav {
   display: flex;
   height: 100%;
-  justify-content: center;
   align-items: center;
   gap: 10px;
   background-image: none !important;
   border: none !important;
+  width: 100%;
+  justify-content: start !important;
 }
 header nav span {
   height: 20px;
@@ -112,6 +114,7 @@ header nav label {
   display: flex;
   max-width: 12px;
   transition: max-width 300ms ease-in-out;
+  overflow: hidden;
 }
 header nav label a:first-child {
   margin-left: 22px;
@@ -137,9 +140,60 @@ header nav div {
   display: none;
 }
 
+.ls-content-container #s_m_HeaderContent_subnav_div {
+  position: sticky;
+  top: 40px;
+  height: auto;
+  width: 100%;
+  padding: 0;
+  z-index: 10;
+  margin-bottom: 20px;
+}
 .ls-content-container #s_m_HeaderContent_subnav_div .thumber, .ls-content-container #s_m_HeaderContent_subnav_div .ls-identity-container {
   display: none;
 }
+.ls-content-container #s_m_HeaderContent_subnav_div #s_m_HeaderContent_subnav_innerdiv {
+  margin-bottom: 0;
+}
+.ls-content-container #s_m_HeaderContent_subnav_div #s_m_HeaderContent_subnav_innerdiv nav {
+  margin-bottom: 0;
+}
 .ls-content-container #s_m_HeaderContent_subnav_div #s_m_HeaderContent_subnav_innerdiv nav #s_m_HeaderContent_subnavigator_generic_tr {
   display: none;
+}
+.ls-content-container #s_m_HeaderContent_subnav_div #s_m_HeaderContent_subnav_innerdiv nav #s_m_HeaderContent_subnavigator_genericSecondRow_tr {
+  height: 35px;
+  background-color: rgb(229, 229, 229);
+  display: flex;
+  margin-bottom: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  gap: 10px;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25) !important;
+  clip-path: inset(0px -10px -10px -10px);
+}
+.ls-content-container #s_m_HeaderContent_subnav_div #s_m_HeaderContent_subnav_innerdiv nav #s_m_HeaderContent_subnavigator_genericSecondRow_tr .ls-subnav-active a {
+  text-decoration: underline !important;
+  color: #0e65ba !important;
+  background-color: transparent !important;
+  outline: none !important;
+  border: none !important;
+}
+.ls-content-container #s_m_HeaderContent_subnav_div #s_m_HeaderContent_subnav_innerdiv nav #s_m_HeaderContent_subnavigator_genericSecondRow_tr div {
+  padding: 0;
+  min-height: unset;
+}
+.ls-content-container #s_m_HeaderContent_subnav_div #s_m_HeaderContent_subnav_innerdiv nav #s_m_HeaderContent_subnavigator_genericSecondRow_tr div a {
+  padding: 0;
+  color: black;
+  outline: none;
+  border: none !important;
+  line-height: unset;
+}
+.ls-content-container #s_m_HeaderContent_subnav_div #s_m_HeaderContent_subnav_innerdiv nav #s_m_HeaderContent_subnavigator_genericSecondRow_tr div a:hover {
+  color: #0e65ba;
+  text-decoration: underline;
+  background: transparent;
+  cursor: pointer;
 }

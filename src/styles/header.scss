@@ -6,7 +6,7 @@ header {
   border: none !important;
   background-color: rgb(229 229 229);
   z-index: 10;
-  box-shadow: none !important;
+  box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25) !important;
   display: flex !important;
 
   .ls-master-header  {
@@ -21,7 +21,7 @@ header {
     .ls-master-header-institution {
       position: absolute;
       right: 15px;
-      font-size: 12px;
+      font-size: 11px;
       color: black;
       font-weight: normal;
       display: flex;
@@ -36,6 +36,7 @@ header {
 
       .ls-user-name {
         position: relative;
+        font-size: 11px;
 
         img {
           width: 20px;
@@ -83,17 +84,18 @@ header {
     color: #0e65ba !important;
     background-color: transparent !important;
     outline: none !important;
-    border: none !important;;
+    border: none !important;
   }
 
   nav {
     display: flex;
     height: 100%;
-    justify-content: center;
     align-items: center;
     gap: 10px;
     background-image: none !important;
     border: none !important;
+    width: 100%;
+    justify-content: start !important;
 
     span {
       height: 20px;
@@ -124,6 +126,7 @@ header {
       display: flex;
       max-width: 12px;
       transition: max-width 300ms ease-in-out;
+      overflow: hidden;
 
       a:first-child {
         margin-left: 22px;
@@ -159,14 +162,69 @@ header {
 
 .ls-content-container {
   #s_m_HeaderContent_subnav_div {
+    position: sticky;
+    top: 40px;
+    height: auto;
+    width: 100%;
+    padding: 0;
+    z-index: 10;
+    margin-bottom: 20px;
+
     .thumber, .ls-identity-container {
       display: none;
     }
 
     #s_m_HeaderContent_subnav_innerdiv {
+      margin-bottom: 0;
+
       nav {
+        margin-bottom: 0;
+
         #s_m_HeaderContent_subnavigator_generic_tr {
           display: none;
+        }
+
+        #s_m_HeaderContent_subnavigator_genericSecondRow_tr {
+          height: 35px;
+          background-color: rgb(229 229 229);
+          display: flex;
+          margin-bottom: 0;
+          justify-content: center;
+          align-items: center;
+          font-size: 12px;
+          gap: 10px;
+          box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.25) !important;
+          clip-path: inset(0px -10px -10px -10px);
+
+          .ls-subnav-active {
+            a {
+              text-decoration: underline !important;
+              color: #0e65ba !important;
+              background-color: transparent !important;
+              outline: none !important;
+              border: none !important;
+            }
+          }
+
+          div {
+            padding: 0;
+            min-height: unset;
+
+            a {
+              padding: 0;
+              color: black;
+              outline: none;
+              border: none !important;
+              line-height: unset;
+
+              &:hover {
+                color: #0e65ba;
+                text-decoration: underline;
+                background: transparent;
+                cursor: pointer;
+              }
+            }
+          }
         }
       }
     }
