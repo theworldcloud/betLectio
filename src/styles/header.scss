@@ -5,7 +5,7 @@ header {
   height: 40px;
   border: none !important;
   background-color: rgb(229 229 229);
-  z-index: 1;
+  z-index: 10;
   box-shadow: none !important;
   display: flex !important;
 
@@ -135,7 +135,7 @@ header {
     }
 
     input:checked ~ label {
-      max-width: 200px;
+      max-width: 275px;
     }
 
     label:after {
@@ -157,6 +157,18 @@ header {
   }
 }
 
-#s_m_HeaderContent_subnav_div {
-    display: none;
+.ls-content-container {
+  #s_m_HeaderContent_subnav_div {
+    .thumber, .ls-identity-container {
+      display: none;
+    }
+
+    #s_m_HeaderContent_subnav_innerdiv {
+      nav {
+        #s_m_HeaderContent_subnavigator_generic_tr {
+          display: none;
+        }
+      }
+    }
+  }
 }

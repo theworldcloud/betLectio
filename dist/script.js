@@ -1,8 +1,18 @@
 "use strict";
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 var header = {};
 header.editImageLink = function () {
     var image = document.querySelector(".ls-master-header-logo");
-    var menu = document.querySelector("#s_m_ctl17") || document.querySelector("#m_ctl17");
+    var menu = Array.from(document.querySelectorAll("header nav a"))
+        .find(function (link) { return link.text === "Hovedmenu"; });
     if (!image || !menu)
         return;
     image.href = menu.href;
@@ -21,21 +31,39 @@ header.editUserText = function () {
     if (!profileText || !profileButton || !navbarProfile) {
         if (!navbarProfile)
             return;
-        var username = navbarProfile.text;
-        navbarProfile.text = "".concat(school, " (").concat(username, ")");
+        var username_1 = navbarProfile.text;
+        navbarProfile.text = "".concat(school, " (").concat(username_1, ")");
         navbarProfile.href = "";
         navbarProfile.style.pointerEvents = "none";
         var element_1 = document.createElement("span");
         container.append(element_1);
         return;
     }
-    var _a = profileText.innerHTML.split(", "), name = _a[0], grade = _a[1];
-    grade = grade.replace("-", "").trim();
-    var names = name.split(" ");
-    name = "".concat(names[1], " ").concat(names[names.length - 1]);
-    navbarProfile.text = "".concat(name, ", ").concat(grade, " ").concat(school);
+    var profileInnerText = profileText.innerText;
+    var username = navbarProfile.text;
+    var text = "".concat(school, " (").concat(username, ")");
+    if (profileInnerText.includes("Eleven")) {
+        var student = profileInnerText
+            .replace("Eleven", "")
+            .replace("-", "")
+            .trim();
+        var _a = student.split(", "), fullname = _a[0], grade = _a[1];
+        var names = fullname.split(" ");
+        var name_1 = "".concat(names[0], " ").concat(names[names.length - 1]);
+        text = "".concat(name_1, " - ").concat(grade, ", ").concat(school);
+    }
+    else if (profileInnerText.includes("Læreren")) {
+        var teacher = profileInnerText
+            .replace("Læreren", "");
+        var _b = teacher.split("-").map(function (str) { return str.trim(); }).filter(function (str) { return str.length > 0; }), initials = _b[0], fullname = _b[1];
+        var names = fullname.split(" ");
+        var name_2 = "".concat(names[0], " ").concat(names[names.length - 1]);
+        text = "".concat(name_2, " (").concat(initials, "), ").concat(school);
+    }
+    navbarProfile.text = text;
     navbarProfile.href = profileButton.href;
-    if (navbarProfile.href === window.location.pathname) {
+    var windowHref = window.location.origin + window.location.pathname;
+    if (navbarProfile.href === windowHref) {
         navbarProfile.classList.add("nav-active");
     }
     var element = document.createElement("span");
@@ -43,7 +71,8 @@ header.editUserText = function () {
 };
 header.createLogoutButton = function () {
     var container = document.querySelector("header .ls-master-header-institution");
-    var logoutButton = document.querySelector("#s_m_ctl18") || document.querySelector("#m_ctl18");
+    var logoutButton = Array.from(document.querySelectorAll("header nav a"))
+        .find(function (link) { return link.text === "Log ud"; });
     if (!container || !logoutButton)
         return;
     var element = document.createElement("a");
@@ -56,70 +85,111 @@ header.createLoginButton = function () {
     var userText = document.querySelector("header .ls-master-header-institution .ls-user-name");
     if (userText)
         return;
-    var logoutButton = document.querySelector("#m_ctl17 ");
-    if (!container || !logoutButton)
+    var loginButton = Array.from(document.querySelectorAll("header nav a"))
+        .find(function (link) { return link.text === "Log ind"; });
+    if (!container || !loginButton)
         return;
+    var nav = document.querySelector("#m_mastermenu");
+    if (nav)
+        nav.style.display = "none";
+    var image = document.querySelector(".ls-master-header-logo");
+    if (image)
+        image.href = loginButton.href;
     var element = document.createElement("a");
-    element.href = logoutButton.href;
+    element.href = loginButton.href;
     element.text = "Log ind";
+    var windowHref = window.location.origin + window.location.pathname;
+    if (element.href === windowHref)
+        element.classList.add("nav-active");
     container.appendChild(element);
 };
-header.createNavLinks = function () {
-    function _createLink(element) {
-        var link = document.createElement("a");
-        link.href = element.href;
-        link.text = element.text;
-        if (element.id.includes("subnavigator_ctl04"))
-            link.href = element.href.replace("fravaerelev_fravaersaarsager", "fravaerelev");
-        var shouldSlice = false;
-        var sliceLinks = ["Karakterer", "Studieplan", "Bøger", "Dokumenter"];
-        sliceLinks.forEach(function (text) {
-            if (shouldSlice)
-                return;
-            if (element.text === text)
-                shouldSlice = true;
-        });
+function _createLink(element) {
+    var link = document.createElement("a");
+    link.href = element.href;
+    link.text = element.text;
+    if (element.text === "Fravær")
+        link.href = element.href.replace("fravaerelev_fravaersaarsager", "fravaerelev");
+    var shouldSlice = false;
+    var sliceLinks = ["Karakterer", "Studieplan", "Bøger", "Dokumenter"];
+    sliceLinks.forEach(function (text) {
         if (shouldSlice)
-            link.href = element.href.slice(0, link.href.indexOf("?"));
-        var windowHref = window.location.origin + window.location.pathname;
-        if (link.href === windowHref) {
-            link.classList.add("nav-active");
-        }
-        return link;
+            return;
+        if (element.text === text)
+            shouldSlice = true;
+    });
+    if (shouldSlice)
+        link.href = element.href.slice(0, link.href.indexOf("?"));
+    var windowHref = window.location.origin + window.location.pathname;
+    var subNavActive = false;
+    var subNavElement = document.querySelector(".ls-subnav2");
+    if (subNavElement) {
+        var subNavLinks = subNavElement.querySelectorAll("a");
+        subNavLinks.forEach(function (subNavLink) {
+            if (subNavActive)
+                return;
+            if (subNavLink.href.includes("?"))
+                subNavLink.href = subNavLink.href.slice(0, subNavLink.href.indexOf("?"));
+            if (subNavLink.href === windowHref)
+                subNavActive = true;
+        });
     }
+    if (link.href === windowHref) {
+        link.classList.add("nav-active");
+    }
+    var navActiveElement = document.querySelector(".ls-content-container nav .ls-subnav-active a");
+    if (navActiveElement && subNavActive) {
+        if (navActiveElement.text === element.text)
+            link.classList.add("nav-active");
+    }
+    return link;
+}
+header.createNavLinks = function () {
     var container = document.querySelector("header nav");
     if (!container)
         return;
     var links = [];
     var hiddenLinks = [];
-    var home = document.querySelector("header nav #s_m_ctl16") || document.querySelector("header nav #m_ctl16");
+    var navLinks = Array.from(document.querySelectorAll("header nav div a"));
+    var home = navLinks.find(function (link) { return link.text === "Forside"; });
     if (home)
-        links.push(_createLink(home));
-    var elements = document.querySelectorAll(".ls-subnav-container .ls-subnav1 div a");
+        links.splice(0, 0, _createLink(home));
+    var menu = navLinks.find(function (link) { return link.text === "Hovedmenu"; });
+    if (menu)
+        hiddenLinks.splice(0, 1, _createLink(menu));
+    var userContainer = document.querySelector("#s_m_HeaderContent_MainTitle");
+    var userText = document.querySelector("#s_m_HeaderContent_MainTitle .ls-hidden-smallscreen");
+    if (userContainer && !userText) {
+        var allLinks = __spreadArray(__spreadArray([], hiddenLinks, true), links, true);
+        return _createImpersonationNavLinks(allLinks);
+    }
+    container.append.apply(container, links);
+    var elements = document.querySelectorAll(".ls-subnav-container div a");
+    if (elements.length === 0)
+        return container.prepend.apply(container, hiddenLinks);
+    if (elements.length <= 1)
+        return;
     elements.forEach(function (element, index) {
-        if (element.text == "Skema" && links.length === 1)
-            return links.push(_createLink(element));
-        if (element.text == "Fravær" && links.length === 2)
-            return links.push(_createLink(element));
-        if (element.text == "Opgaver" && links.length === 3)
-            return links.push(_createLink(element));
-        if (element.text == "Lektier" && links.length === 4)
-            return links.push(_createLink(element));
-        if (element.text == "Karakterer" && links.length === 5)
-            return links.push(_createLink(element));
-        if (element.text == "Beskeder" && links.length === 6)
-            return links.push(_createLink(element));
-        if (element.text == "Studieplan" && hiddenLinks.length === 0)
-            return hiddenLinks.push(_createLink(element));
-        if (element.text == "Bøger" && hiddenLinks.length === 1)
-            return hiddenLinks.push(_createLink(element));
-        if (element.text == "Dokumenter" && hiddenLinks.length === 2)
-            return hiddenLinks.push(_createLink(element));
+        if (element.text === "Skema")
+            return links.splice(1, 0, _createLink(element));
+        if (element.text === "Fravær")
+            return links.splice(2, 0, _createLink(element));
+        if (element.text === "Opgaver")
+            return links.splice(3, 0, _createLink(element));
+        if (element.text === "Lektier")
+            return links.splice(4, 0, _createLink(element));
+        if (element.text === "Karakterer")
+            return links.splice(5, 0, _createLink(element));
+        if (element.text === "Beskeder")
+            return links.splice(6, 0, _createLink(element));
+        if (element.text === "Studieplan")
+            return hiddenLinks.splice(1, 0, _createLink(element));
+        if (element.text === "Bøger")
+            return hiddenLinks.splice(2, 0, _createLink(element));
+        if (element.text === "Dokumenter")
+            return hiddenLinks.splice(3, 0, _createLink(element));
         return;
     });
     container.append.apply(container, links);
-    if (elements.length < 2)
-        return;
     var spanElement = document.createElement("span");
     container.append(spanElement);
     var hiddenLinkInput = document.createElement("input");
@@ -138,4 +208,96 @@ header.createNavLinks = function () {
     container.append(hiddenLinkInput);
     container.append(hiddenLinkLabel);
 };
+function _createImpersonationNavLinks(navLinks) {
+    var container = document.querySelector("header nav");
+    if (!container)
+        return;
+    container.append.apply(container, navLinks);
+    var elements = document.querySelectorAll("#s_m_HeaderContent_subnav_div nav a");
+    if (elements.length === 0)
+        return;
+    var impersonation = document.querySelector("#s_m_HeaderContent_MainTitle");
+    if (!impersonation)
+        return;
+    var impersonationText = impersonation.innerHTML;
+    if (impersonationText.includes("Gruppen"))
+        return;
+    var spanElement = document.createElement("span");
+    container.append(spanElement);
+    var ignoredLinks = ["Studieplan", "Studieretninger", "Dokumenter", "Bøger", "Materialer"];
+    var links = [];
+    if (impersonationText.includes("Eleven") || impersonationText.includes("Læreren")) {
+        var text = "";
+        if (impersonationText.includes("Eleven")) {
+            var student = impersonationText.split("-")[0].trim()
+                .replace("Eleven", "")
+                .trim();
+            var _a = student.split(", "), fullname = _a[0], grade = _a[1];
+            var names = fullname.split(" ");
+            var name_3 = names[0];
+            text = "".concat(name_3, "'s skema (").concat(grade, ")");
+        }
+        else if (impersonationText.includes("Læreren")) {
+            var teacher = impersonationText
+                .replace("Læreren", "").trim()
+                .split("-");
+            var _b = teacher.map(function (str) { return str.trim(); }), initials = _b[0], fullname = _b[1];
+            var names = fullname.split(" ");
+            var name_4 = names[0];
+            text = "".concat(name_4, "'s skema (").concat(initials, ")");
+        }
+        var element = document.querySelector("#s_m_HeaderContent_subnavigator_ctl01");
+        if (!element)
+            return;
+        var link = document.createElement("a");
+        link.text = text;
+        link.href = element.href;
+        var windowHref = window.location.href;
+        if (link.href === windowHref)
+            link.classList.add("nav-active");
+        links.push(link);
+    }
+    else if (impersonationText.includes("Klassen")) {
+        elements.forEach(function (element) {
+            if (ignoredLinks.includes(element.text))
+                return;
+            var link = document.createElement("a");
+            var grade = impersonationText.split("-")[0].trim()
+                .replace("Klassen", "").trim();
+            link.href = element.href;
+            if (element.text === "Medlemsskema")
+                element.text = "Skema";
+            link.text = "".concat(element.text, " (").concat(grade, ")");
+            if (link.href === window.location.href)
+                link.classList.add("nav-active");
+            links.push(link);
+        });
+    }
+    else if (impersonationText.includes("Holdet")) {
+        elements.forEach(function (element) {
+            if (ignoredLinks.includes(element.text))
+                return;
+            var link = document.createElement("a");
+            var team = impersonationText.split("-")[0].trim()
+                .replace("Holdet", "").trim();
+            link.href = element.href;
+            if (element.text === "Lærere-Elever")
+                element.text = "Medlemmer";
+            link.text = "".concat(element.text, " (").concat(team, ")");
+            if (link.href === window.location.href)
+                link.classList.add("nav-active");
+            if (element.text === "Skema")
+                links.splice(0, 0, link);
+            if (element.text === "Medlemsskema")
+                links.splice(1, 0, link);
+            if (element.text === "Aktiviteter")
+                links.splice(2, 0, link);
+            if (element.text === "Modulregnskab")
+                links.splice(3, 0, link);
+            if (element.text === "Medlemmer")
+                links.splice(4, 0, link);
+        });
+    }
+    container.append.apply(container, links);
+}
 Object.keys(header).forEach(function (func) { return header[func](); });

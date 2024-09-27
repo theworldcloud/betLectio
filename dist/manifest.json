@@ -1,6 +1,6 @@
 {
   "name": "betLectio",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "version": "0.1",
   "description": "Smart design for lectio",
   "content_scripts": [
@@ -13,6 +13,11 @@
       "js": [ "script.js" ]
     }
   ],
-  "permissions": [ "https://www.lectio.dk/*", "storage" ],
-  "web_accessible_resources": [ "*" ]
+  "permissions": [ "storage" ],
+  "web_accessible_resources": [
+    {
+      "matches": [ "https://www.lectio.dk/*" ],
+      "resources": ["*" ]
+    }
+  ]
 }
