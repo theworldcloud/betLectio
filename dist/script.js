@@ -8,6 +8,31 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+var footer = {};
+footer.changeCopyrightText = function () {
+    var element = document.querySelector("#s_m_masterfootermacomSpan a");
+    if (!element)
+        return;
+    element.innerHTML = "&copy; Copr. MaCom A/S";
+};
+footer.changeSupportText = function () {
+    var element = document.querySelector("#s_m_masterfootermacomsupportSpan a");
+    if (!element)
+        return;
+    element.text = "Kontakt via email";
+};
+footer.createVersionText = function () {
+    var container = document.querySelector("footer");
+    if (!container)
+        return;
+    var manifest = chrome.runtime.getManifest();
+    var version = manifest.version;
+    var element = document.createElement("span");
+    element.id = "betlectiofootervesioninfoSpan";
+    element.innerHTML = "betLectio version ".concat(version);
+    container.append(element);
+};
+Object.keys(footer).forEach(function (func) { return footer[func](); });
 var header = {};
 header.editImageLink = function () {
     var image = document.querySelector(".ls-master-header-logo");

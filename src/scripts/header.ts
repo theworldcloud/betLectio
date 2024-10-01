@@ -316,7 +316,7 @@ function _createImpersonationNavLinks(navLinks: Array<HTMLAnchorElement>) {
             if (element.text === "Aktiviteter") links.splice(2, 0, link);
             if (element.text === "Modulregnskab") links.splice(3, 0, link);
             if (element.text === "Medlemmer") links.splice(4, 0, link);
-            if (element.text === "Studieplan") links.splice(5, 0, link);
+            if (element.text === "Studieplan")   links.splice(5, 0, link);
         });
     }
 
