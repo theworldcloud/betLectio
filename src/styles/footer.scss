@@ -26,7 +26,6 @@ footer {
         position: absolute;
         padding: 0 !important;
         line-height: 10px;
-        user-select: none;
         color: black !important;
         font-size: 11px !important;
         pointer-events: none;
@@ -35,7 +34,6 @@ footer {
             color: black !important;
             font-size: 11px !important;
             line-height: 10px;
-            user-select: none;
         }
 
         &:hover {
@@ -51,18 +49,18 @@ footer {
         }
     }
 
-    #s_m_masterfootermacomSpan {
+    #s_m_masterfootermacomSpan, #m_masterfootermacomSpan {
         top: 10px;
         left: 10px;
     }
 
-    #s_m_masterfootermacomsupportSpan {
+    #s_m_masterfootermacomsupportSpan, #m_masterfootermacomsupportSpan {
         top: 25px;
         left: 10px;
         pointer-events: unset !important;
     }
 
-    #s_m_masterfooterversioninfoSpan {
+    #s_m_masterfooterversioninfoSpan, #m_masterfooterversioninfoSpan {
         top: 10px;
         right: 10px;
         pointer-events: unset !important;
@@ -73,13 +71,20 @@ footer {
         right: 10px;
     }
 
-    span:has(#s_m_masterfooternowSpan) {
-        position: unset;
-        width: 100px;
-        height: 10px;
+    span:has(#s_m_masterfooternowSpan), span:has(#m_masterfooternowSpan) {
+        display: none;
+    }
 
-        #s_m_masterfootertiltopSpan {
-            display: none;
+    #masterfooternow {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        position: unset;
+        gap: 3px;
+        
+        span {
+            position: unset;
         }
     }
 }

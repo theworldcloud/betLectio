@@ -25,7 +25,6 @@ footer span {
   position: absolute;
   padding: 0 !important;
   line-height: 10px;
-  user-select: none;
   color: black !important;
   font-size: 11px !important;
   pointer-events: none;
@@ -34,7 +33,6 @@ footer span a, footer span span {
   color: black !important;
   font-size: 11px !important;
   line-height: 10px;
-  user-select: none;
 }
 footer span:hover {
   cursor: pointer;
@@ -46,16 +44,16 @@ footer span:hover a {
   outline: none !important;
   border: none !important;
 }
-footer #s_m_masterfootermacomSpan {
+footer #s_m_masterfootermacomSpan, footer #m_masterfootermacomSpan {
   top: 10px;
   left: 10px;
 }
-footer #s_m_masterfootermacomsupportSpan {
+footer #s_m_masterfootermacomsupportSpan, footer #m_masterfootermacomsupportSpan {
   top: 25px;
   left: 10px;
   pointer-events: unset !important;
 }
-footer #s_m_masterfooterversioninfoSpan {
+footer #s_m_masterfooterversioninfoSpan, footer #m_masterfooterversioninfoSpan {
   top: 10px;
   right: 10px;
   pointer-events: unset !important;
@@ -64,11 +62,20 @@ footer #betlectiofootervesioninfoSpan {
   top: 25px;
   right: 10px;
 }
-footer span:has(#s_m_masterfooternowSpan) {
-  position: unset;
-  width: 100px;
-  height: 10px;
-}
-footer span:has(#s_m_masterfooternowSpan) #s_m_masterfootertiltopSpan {
+footer span:has(#s_m_masterfooternowSpan), footer span:has(#m_masterfooternowSpan) {
   display: none;
+}
+footer span:has(#m_masterfooternowSpan) {
+  display: none;
+}
+footer #masterfooternow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: unset;
+  gap: 3px;
+}
+footer #masterfooternow span {
+  position: unset;
 }

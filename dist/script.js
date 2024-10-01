@@ -10,16 +10,37 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
 };
 var footer = {};
 footer.changeCopyrightText = function () {
-    var element = document.querySelector("#s_m_masterfootermacomSpan a");
+    var element = document.querySelector("#s_m_masterfootermacomSpan a") || document.querySelector("#m_masterfootermacomSpan a");
     if (!element)
         return;
     element.innerHTML = "&copy; Copr. MaCom A/S";
 };
 footer.changeSupportText = function () {
-    var element = document.querySelector("#s_m_masterfootermacomsupportSpan a");
+    var element = document.querySelector("#s_m_masterfootermacomsupportSpan a") || document.querySelector("#m_masterfootermacomsupportSpan a");
     if (!element)
         return;
     element.text = "Kontakt via email";
+};
+footer.changeNowText = function () {
+    var footer = document.querySelector("footer");
+    var element = document.querySelector("#s_m_masterfooternowSpan") || document.querySelector("#m_masterfooternowSpan");
+    if (!footer || !element)
+        return;
+    var _a = element.innerHTML.split("&nbsp;&nbsp;"), date = _a[0], time = _a[1];
+    var dateElement = document.createElement("span");
+    var _b = date.split("/"), day = _b[0], monthYear = _b[1];
+    var _c = monthYear.split("-"), month = _c[0], year = _c[1];
+    day = parseInt(day) > 9 ? day : "0" + day;
+    month = parseInt(month) > 9 ? month : "0" + month;
+    date = "".concat(day, "/").concat(month, "-").concat(year);
+    dateElement.innerHTML = date;
+    var timeElement = document.createElement("span");
+    time = time.replace("kl.", "").trim().replace(":", ".");
+    timeElement.innerHTML = time;
+    var container = document.createElement("div");
+    container.id = "masterfooternow";
+    container.append.apply(container, [dateElement, timeElement]);
+    footer.append(container);
 };
 footer.createVersionText = function () {
     var container = document.querySelector("footer");
