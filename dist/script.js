@@ -394,11 +394,20 @@ login.changeTitle = function () {
     element.innerHTML = "Log ind";
 };
 login.inputPlaceholders = function () {
-    var inputs = Array.from(document.querySelectorAll(".ls-std-island-layout-ltr input"));
-    inputs.forEach(function (input) {
+    var containers = Array.from(document.querySelectorAll(".ls-std-island-layout-ltr tr:has(input)"));
+    containers.forEach(function (container) {
+        var placeholder = container.querySelector("td");
+        var input = container.querySelector("input");
+        if (!placeholder || !input)
+            return;
         if (input.type === "checkbox")
             return;
         input.placeholder = " ";
+        var label = document.createElement("label");
+        label.innerHTML = placeholder.innerHTML.replace(":", "");
+        label.htmlFor = container.id;
+        placeholder.innerHTML = "";
+        placeholder.append(label);
     });
 };
 Object.keys(login).forEach(function (func) { return login[func](); });

@@ -38,7 +38,7 @@
           table {
             display: flex;
             justify-content: center;
-            
+
             tbody {
               display: flex;
               flex-direction: column;
@@ -58,6 +58,15 @@
               }
             }
 
+            tr:has(input:placeholder-shown) {
+              td:first-child {
+                background-color: transparent;
+                transform: translateY(-50%);
+                top: 50%;
+                left: 7px;
+              }
+            }
+
             tr:has(input) {
               display: flex;
               flex-direction: column;
@@ -65,14 +74,20 @@
               position: relative;
 
               td:first-child {
-                display: none;
+                position: absolute;
+                top: -2px;
+                left: 8px;
+                font-size: 10px;
+                background-color: #f9f9fc;
+                user-select: none;
+                padding: 0 4px;
               }
 
               td:last-child {
                 input[type="text"], input[type="password"] {
                   width: 200px !important;
                   font-size: 12px;
-                  padding: 5px;
+                  padding: 6px 5px 5px 5px;
                   height: auto;
                   text-overflow: ellipsis;
                   background-color: transparent;

@@ -19,10 +19,21 @@ login.changeTitle = function() {
 }
 
 login.inputPlaceholders = function() {
-    const inputs = Array.from(document.querySelectorAll(".ls-std-island-layout-ltr input")) as Array<HTMLInputElement>;
-    inputs.forEach(function(input) {
+    const containers = Array.from(document.querySelectorAll(".ls-std-island-layout-ltr tr:has(input)")) as Array<HTMLDivElement>;
+    containers.forEach(function(container) {
+        const placeholder = container.querySelector("td");
+        const input = container.querySelector("input");
+
+        if (!placeholder || !input) return;
         if (input.type === "checkbox") return;
+
         input.placeholder = " ";
+
+        const label = document.createElement("label");
+        label.innerHTML = placeholder.innerHTML.replace(":", "");
+        label.htmlFor = container.id;
+        placeholder.innerHTML = "";
+        placeholder.append(label);
     });
 }
 
