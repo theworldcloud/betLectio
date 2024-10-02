@@ -20,6 +20,7 @@ footer.changeSupportText = function () {
     if (!element)
         return;
     element.text = "Kontakt via email";
+    element.title = "";
 };
 footer.changeNowText = function () {
     var footer = document.querySelector("footer");
@@ -141,13 +142,24 @@ header.createLoginButton = function () {
     var image = document.querySelector(".ls-master-header-logo");
     if (image)
         image.href = loginButton.href;
-    var element = document.createElement("a");
-    element.href = loginButton.href;
-    element.text = "Log ind";
+    var loginElement = document.createElement("a");
+    loginElement.href = loginButton.href;
+    loginElement.text = "Log ind";
     var windowHref = window.location.origin + window.location.pathname;
-    if (element.href === windowHref)
-        element.classList.add("nav-active");
-    container.appendChild(element);
+    if (loginElement.href === windowHref)
+        loginElement.classList.add("nav-active");
+    var elements = [];
+    var infoElement = document.querySelector("#schoolnametr #m_Content_schoolnametd");
+    if (infoElement) {
+        var schoolElement = document.createElement("a");
+        schoolElement.text = infoElement.innerHTML;
+        schoolElement.style.pointerEvents = "none";
+        elements.push(schoolElement);
+        var spanElement = document.createElement("span");
+        elements.push(spanElement);
+    }
+    container.innerHTML = container.innerHTML.replace("&nbsp;", "");
+    container.append.apply(container, __spreadArray(__spreadArray([], elements, true), [loginElement], false));
 };
 function _createLink(element) {
     var link = document.createElement("a");
@@ -355,8 +367,38 @@ init.loginRedirect = function () {
         .find(function (link) { return link.text === "Log ind"; });
     if (!loginButton)
         return;
-    if (window.location.href === loginButton.href)
+    var location = window.location.href.replace(window.location.origin, "").split("?")[0];
+    var pathnameArray = window.location.pathname.split("/");
+    pathnameArray.pop();
+    var pathname = pathnameArray.join("/");
+    var allowedPaths = ["".concat(pathname, "/login.aspx"), "".concat(pathname, "/VersionInfo.aspx")];
+    if (allowedPaths.includes(location))
         return;
     window.location.href = loginButton.href;
 };
 Object.keys(init).forEach(function (func) { return init[func](); });
+var login = {};
+login.removeText = function () {
+    var container = document.querySelector("#m_Content_panel");
+    if (!container)
+        return;
+    var children = Array.from(container.children)
+        .filter(function (child) { return child.localName !== "br"; });
+    container.innerHTML = "";
+    container.append.apply(container, children);
+};
+login.changeTitle = function () {
+    var element = document.querySelector(".islandHeaderContainer span");
+    if (!element)
+        return;
+    element.innerHTML = "Log ind";
+};
+login.inputPlaceholders = function () {
+    var inputs = Array.from(document.querySelectorAll(".ls-std-island-layout-ltr input"));
+    inputs.forEach(function (input) {
+        if (input.type === "checkbox")
+            return;
+        input.placeholder = " ";
+    });
+};
+Object.keys(login).forEach(function (func) { return login[func](); });

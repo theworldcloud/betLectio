@@ -12,6 +12,7 @@ footer.changeSupportText = function() {
     if (!element) return;
 
     element.text = "Kontakt via email";
+    element.title = "";
 }
 
 footer.changeNowText = function() {

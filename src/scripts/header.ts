@@ -104,14 +104,27 @@ header.createLoginButton = function() {
     const image: HTMLAnchorElement | null = document.querySelector(".ls-master-header-logo");
     if (image) image.href = loginButton.href;
 
-    const element = document.createElement("a");
-    element.href = loginButton.href;
-    element.text = "Log ind";
+    const loginElement = document.createElement("a");
+    loginElement.href = loginButton.href;
+    loginElement.text = "Log ind";
 
     const windowHref = window.location.origin + window.location.pathname;
-    if (element.href === windowHref) element.classList.add("nav-active");
+    if (loginElement.href === windowHref) loginElement.classList.add("nav-active");
 
-    container.appendChild(element);
+    const elements: Array<HTMLElement> = [];
+    const infoElement = document.querySelector("#schoolnametr #m_Content_schoolnametd");
+    if (infoElement) {
+        const schoolElement = document.createElement("a")
+        schoolElement.text = infoElement.innerHTML;
+        schoolElement.style.pointerEvents = "none";
+        elements.push(schoolElement);
+
+        const spanElement = document.createElement("span");
+        elements.push(spanElement);
+    }
+
+    container.innerHTML = container.innerHTML.replace("&nbsp;", "");
+    container.append(...[ ...elements, loginElement ]);
 }
 
 function _createLink(element: HTMLAnchorElement) {
