@@ -405,7 +405,7 @@ login.inputPlaceholders = function () {
         input.placeholder = " ";
         var label = document.createElement("label");
         label.innerHTML = placeholder.innerHTML.replace(":", "");
-        label.htmlFor = container.id;
+        label.htmlFor = input.id;
         placeholder.innerHTML = "";
         placeholder.append(label);
     });

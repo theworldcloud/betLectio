@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #m_outerContentFrameDiv {
   display: flex;
   justify-content: center;
@@ -33,6 +34,7 @@
 #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table {
   display: flex;
   justify-content: center;
+  position: relative;
 }
 #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tbody {
   display: flex;
@@ -50,11 +52,34 @@
   height: auto !important;
   padding-bottom: 10px;
 }
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(.alert) {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateY(50px) translateX(-50%);
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(.alert) .alert {
+  font-size: 12px;
+  font-weight: bold;
+  width: auto;
+  white-space: nowrap;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(.alert) .alert:before {
+  content: "ℹ";
+  border-radius: 50%;
+  border: 1px solid #e46f61;
+  padding: 2px 8px;
+  margin-right: 10px;
+  font-size: 16px;
+}
 #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input:placeholder-shown) td:first-child {
-  background-color: transparent;
   transform: translateY(-50%);
   top: 50%;
-  left: 7px;
+  left: 8px;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input:placeholder-shown) td:first-child label {
+  background-color: transparent;
+  cursor: text;
 }
 #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) {
   display: flex;
@@ -64,20 +89,69 @@
 }
 #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:first-child {
   position: absolute;
-  top: -2px;
+  top: 0;
+  transform: translateY(-35%);
   left: 8px;
-  font-size: 10px;
-  background-color: #f9f9fc;
+  padding: 0;
+  vertical-align: unset;
+  transition: top 200ms ease-in-out;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:first-child label {
+  position: relative;
+  display: unset;
   user-select: none;
   padding: 0 4px;
+  background-color: #f9f9fc;
+  font-size: 10px;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input {
+  font-size: 12px;
+  outline: none !important;
+  border: 1px solid rgb(64, 64, 64);
+  border-radius: 2px;
 }
 #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=text], #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=password] {
   width: 200px !important;
-  font-size: 12px;
-  padding: 6px 5px 5px 5px;
   height: auto;
+  padding: 7px 5px 6px 5px;
   text-overflow: ellipsis;
   background-color: transparent;
-  outline: none !important;
-  border: 1px solid rgb(64, 64, 64);
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=checkbox] {
+  width: 15px;
+  height: 15px;
+  position: relative;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=checkbox]:before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-size: 12px;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child label {
+  font-size: 12px;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(div.infoText) {
+  display: none;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(div.button) a {
+  width: auto;
+  height: auto;
+  padding: 5px 25px;
+  border: 1px solid rgb(75, 75, 75);
+  background-color: #f9f9fc;
+  background-image: none;
+  color: black;
+  border-radius: 2px;
+}
+#m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(div.button) a:hover {
+  text-decoration: underline;
+  filter: brightness(0.8);
 }

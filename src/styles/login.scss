@@ -38,6 +38,7 @@
           table {
             display: flex;
             justify-content: center;
+            position: relative;
 
             tbody {
               display: flex;
@@ -58,12 +59,39 @@
               }
             }
 
+            tr:has(.alert) {
+              position: absolute;
+              bottom: 0;
+              left: 50%;
+              transform: translateY(50px) translateX(-50%);
+
+              .alert {
+                font-size: 12px;
+                font-weight: bold;
+                width: auto;
+                white-space: nowrap;
+
+                &:before {
+                  content: "\2139";
+                  border-radius: 50%;
+                  border: 1px solid #e46f61;
+                  padding: 2px 8px;
+                  margin-right: 10px;
+                  font-size: 16px;
+                }
+              }
+            }
+
             tr:has(input:placeholder-shown) {
               td:first-child {
-                background-color: transparent;
                 transform: translateY(-50%);
                 top: 50%;
-                left: 7px;
+                left: 8px;
+
+                label {
+                  background-color: transparent;
+                  cursor: text;
+                }
               }
             }
 
@@ -75,24 +103,83 @@
 
               td:first-child {
                 position: absolute;
-                top: -2px;
+                top: 0;
+                transform: translateY(-35%);
                 left: 8px;
-                font-size: 10px;
-                background-color: #f9f9fc;
-                user-select: none;
-                padding: 0 4px;
+                padding: 0;
+                vertical-align: unset;
+                transition: top 200ms ease-in-out;
+
+                label {
+                  position: relative;
+                  display: unset;
+                  user-select: none;
+                  padding: 0 4px;
+                  background-color: #f9f9fc;
+                  font-size: 10px;
+                }
               }
 
               td:last-child {
-                input[type="text"], input[type="password"] {
-                  width: 200px !important;
+                display: flex;
+                align-items: center;
+                gap: 2px;
+
+                input {
                   font-size: 12px;
-                  padding: 6px 5px 5px 5px;
-                  height: auto;
-                  text-overflow: ellipsis;
-                  background-color: transparent;
                   outline: none !important;
                   border: 1px solid rgb(64, 64, 64);
+                  border-radius: 2px;
+                }
+
+                input[type="text"], input[type="password"] {
+                  width: 200px !important;
+                  height: auto;
+                  padding: 7px 5px 6px 5px;
+                  text-overflow: ellipsis;
+                  background-color: transparent;
+                }
+
+                input[type="checkbox"] {
+                  width: 15px;
+                  height: 15px;
+                  position: relative;
+
+                  &:before {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    margin: 0;
+                    font-size: 12px;
+                  }
+                }
+
+                label {
+                  font-size: 12px;
+                }
+              }
+            }
+
+            tr:has(div.infoText) {
+              display: none;
+            }
+
+            tr:has(div.button) {
+              a {
+
+                width: auto;
+                height: auto;
+                padding: 5px 25px;
+                border: 1px solid rgb(75, 75, 75);
+                background-color: #f9f9fc;
+                background-image: none;
+                color: black;
+                border-radius: 2px;
+
+                &:hover {
+                  text-decoration: underline;
+                  filter: brightness(0.80);
                 }
               }
             }

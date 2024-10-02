@@ -8,3 +8,7 @@
 #s_m_helptipDiv {
   display: none;
 }
+
+html {
+  font-size: 75% !important;
+}
