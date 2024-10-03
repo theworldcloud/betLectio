@@ -1,0 +1,51 @@
+form[action="./AdgangIndstillinger.aspx"] section {
+  width: 250px;
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table {
+  width: 100%;
+  background-color: transparent;
+  border: none;
+  margin: 0;
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table tr:has(th) {
+  border-bottom: 1px solid rgb(175, 175, 175);
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table tr {
+  border: 0;
+  border-bottom: 1px dotted rgb(175, 175, 175);
+  background-color: transparent;
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table tr th {
+  border: 0;
+  text-align: start;
+  pointer-events: none;
+  cursor: default;
+  padding: 7px;
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table tr th a {
+  color: black;
+  font-weight: normal;
+  font-style: italic;
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table tr td {
+  border: 0;
+  padding: 6px 5px;
+  background-color: transparent;
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table tr td div {
+  min-height: unset;
+  line-height: normal;
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table tr td div:hover a {
+  text-decoration: underline !important;
+  color: #0e65ba !important;
+  background-color: transparent !important;
+  outline: none !important;
+  border: none !important;
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table tr td div a {
+  color: black;
+}
+form[action="./AdgangIndstillinger.aspx"] section .islandContent table tr td div img {
+  display: none;
+}

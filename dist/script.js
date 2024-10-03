@@ -379,7 +379,7 @@ init.loginRedirect = function () {
 Object.keys(init).forEach(function (func) { return init[func](); });
 var login = {};
 login.removeText = function () {
-    var container = document.querySelector("#m_Content_panel");
+    var container = document.querySelector("form[action='./login.aspx'] #m_Content_panel");
     if (!container)
         return;
     var children = Array.from(container.children)
@@ -388,13 +388,13 @@ login.removeText = function () {
     container.append.apply(container, children);
 };
 login.changeTitle = function () {
-    var element = document.querySelector(".islandHeaderContainer span");
+    var element = document.querySelector("form[action='./login.aspx'] .islandHeaderContainer span");
     if (!element)
         return;
     element.innerHTML = "Log ind";
 };
 login.inputPlaceholders = function () {
-    var containers = Array.from(document.querySelectorAll(".ls-std-island-layout-ltr tr:has(input)"));
+    var containers = Array.from(document.querySelectorAll("form[action='./login.aspx'] .ls-std-island-layout-ltr tr:has(input)"));
     containers.forEach(function (container) {
         var placeholder = container.querySelector("td");
         var input = container.querySelector("input");
@@ -411,3 +411,18 @@ login.inputPlaceholders = function () {
     });
 };
 Object.keys(login).forEach(function (func) { return login[func](); });
+var profile = {};
+profile.changeLoginTimestamps = function () {
+    var elements = Array.from(document.querySelectorAll("form[action='./AdgangIndstillinger.aspx'] table tr td:nth-child(2)"));
+    elements.forEach(function (element) {
+        var _a = element.innerHTML.split(" "), date = _a[0], time = _a[1];
+        var _b = date.split("/"), day = _b[0], monthYear = _b[1];
+        var _c = monthYear.split("-"), month = _c[0], year = _c[1];
+        day = parseInt(day) > 9 ? day : "0" + day;
+        month = parseInt(month) > 9 ? month : "0" + month;
+        date = "".concat(day, "/").concat(month, "-").concat(year);
+        time = time.replace(":", ".");
+        element.innerHTML = "".concat(date, " ").concat(time);
+    });
+};
+Object.keys(profile).forEach(function (func) { return profile[func](); });
