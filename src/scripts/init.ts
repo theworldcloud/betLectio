@@ -1,6 +1,6 @@
 const init: Record<string, () => void> = {};
 
-init.pathAsFormId = function() {
+init.pathAsFormIdentifier = function() {
     const location = window.location.pathname;
     const paths = location.split("/");
     const path = paths[paths.length - 1];

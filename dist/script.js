@@ -362,7 +362,7 @@ function _createImpersonationNavLinks(navLinks) {
 }
 Object.keys(header).forEach(function (func) { return header[func](); });
 var init = {};
-init.pathAsFormId = function () {
+init.pathAsFormIdentifier = function () {
     var location = window.location.pathname;
     var paths = location.split("/");
     var path = paths[paths.length - 1];

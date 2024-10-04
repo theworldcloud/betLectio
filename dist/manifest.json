@@ -17,7 +17,7 @@
   "web_accessible_resources": [
     {
       "matches": [ "https://www.lectio.dk/*" ],
-      "resources": ["*" ]
+      "resources": [ "*" ]
     }
   ]
 }
