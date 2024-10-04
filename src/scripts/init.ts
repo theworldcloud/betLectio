@@ -1,19 +1,19 @@
 const init: Record<string, () => void> = {};
 
-init.loginRedirect = function() {
-    const loginButton: HTMLAnchorElement | undefined = (Array.from(document.querySelectorAll("header nav a")) as Array<HTMLAnchorElement>)
-        .find((link) => link.text === "Log ind");
+init.pathAsFormId = function() {
+    const location = window.location.pathname;
+    const paths = location.split("/");
+    const path = paths[paths.length - 1];
+    const name = path.split(".")[0];
 
-    if (!loginButton) return;
+    const href = window.location.href
+        .replace(window.location.origin, "")
+        .replace(location, `./${path}`);
 
-    const location = window.location.href.replace(window.location.origin, "").split("?")[0];
-    const pathnameArray = window.location.pathname.split("/");
-    pathnameArray.pop();
-    const pathname = pathnameArray.join("/");
+    const form = document.querySelector(`form[action="${href}"]`);
+    if (!form) return;
 
-    const allowedPaths = [ `${pathname}/login.aspx`, `${pathname}/VersionInfo.aspx` ]
-    if (allowedPaths.includes(location)) return;
-    window.location.href = loginButton.href;
+    form.setAttribute("path", name);
 }
 
 Object.keys(init).forEach(func => init[func]());

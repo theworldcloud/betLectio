@@ -362,7 +362,22 @@ function _createImpersonationNavLinks(navLinks) {
 }
 Object.keys(header).forEach(function (func) { return header[func](); });
 var init = {};
-init.loginRedirect = function () {
+init.pathAsFormId = function () {
+    var location = window.location.pathname;
+    var paths = location.split("/");
+    var path = paths[paths.length - 1];
+    var name = path.split(".")[0];
+    var href = window.location.href
+        .replace(window.location.origin, "")
+        .replace(location, "./".concat(path));
+    var form = document.querySelector("form[action=\"".concat(href, "\"]"));
+    if (!form)
+        return;
+    form.setAttribute("path", name);
+};
+Object.keys(init).forEach(function (func) { return init[func](); });
+var login = {};
+login.autoRedirect = function () {
     var loginButton = Array.from(document.querySelectorAll("header nav a"))
         .find(function (link) { return link.text === "Log ind"; });
     if (!loginButton)
@@ -376,10 +391,8 @@ init.loginRedirect = function () {
         return;
     window.location.href = loginButton.href;
 };
-Object.keys(init).forEach(function (func) { return init[func](); });
-var login = {};
 login.removeText = function () {
-    var container = document.querySelector("form[action='./login.aspx'] #m_Content_panel");
+    var container = document.querySelector("form[path='login'] #m_Content_panel");
     if (!container)
         return;
     var children = Array.from(container.children)
@@ -388,13 +401,13 @@ login.removeText = function () {
     container.append.apply(container, children);
 };
 login.changeTitle = function () {
-    var element = document.querySelector("form[action='./login.aspx'] .islandHeaderContainer span");
+    var element = document.querySelector("form[path='login'] .islandHeaderContainer span");
     if (!element)
         return;
     element.innerHTML = "Log ind";
 };
 login.inputPlaceholders = function () {
-    var containers = Array.from(document.querySelectorAll("form[action='./login.aspx'] .ls-std-island-layout-ltr tr:has(input)"));
+    var containers = Array.from(document.querySelectorAll("form[path='login'] .ls-std-island-layout-ltr tr:has(input)"));
     containers.forEach(function (container) {
         var placeholder = container.querySelector("td");
         var input = container.querySelector("input");
@@ -413,7 +426,7 @@ login.inputPlaceholders = function () {
 Object.keys(login).forEach(function (func) { return login[func](); });
 var profile = {};
 profile.changeLoginTimestamps = function () {
-    var elements = Array.from(document.querySelectorAll("form[action='./AdgangIndstillinger.aspx'] table tr td:nth-child(2)"));
+    var elements = Array.from(document.querySelectorAll("form[path='AdgangIndstillinger'] table tr td:nth-child(2)"));
     elements.forEach(function (element) {
         var _a = element.innerHTML.split(" "), date = _a[0], time = _a[1];
         var _b = date.split("/"), day = _b[0], monthYear = _b[1];

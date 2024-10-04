@@ -1,70 +1,70 @@
 @charset "UTF-8";
-form[action="./login.aspx"] #m_outerContentFrameDiv {
+form[path=login] #m_outerContentFrameDiv {
   display: flex;
   justify-content: center;
   align-items: center;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container #m_HeaderContent_pageHeader {
+form[path=login] #m_outerContentFrameDiv .ls-content-container #m_HeaderContent_pageHeader {
   display: none;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island {
   background: transparent;
   border: none;
   box-shadow: none;
   margin: 0;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandHeaderContainer {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandHeaderContainer {
   background: transparent;
   border: none;
   box-shadow: none;
   justify-content: center;
   height: auto;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandHeaderContainer span {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandHeaderContainer span {
   padding: 0;
   font-size: 13px;
   color: black;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent {
   background: transparent;
   padding: 0;
   min-height: unset;
   height: auto;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table {
   display: flex;
   justify-content: center;
   position: relative;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tbody {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tbody {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr {
   display: flex;
   justify-content: center;
   height: auto;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr #m_Content_schoolnametd {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr #m_Content_schoolnametd {
   color: black;
   font-size: 11.5px;
   height: auto !important;
   padding-bottom: 10px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(.alert) {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(.alert) {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translateY(50px) translateX(-50%);
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(.alert) .alert {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(.alert) .alert {
   font-size: 12px;
   font-weight: bold;
   width: auto;
   white-space: nowrap;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(.alert) .alert:before {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(.alert) .alert:before {
   content: "ℹ";
   border-radius: 50%;
   border: 1px solid #e46f61;
@@ -72,22 +72,22 @@ form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-st
   margin-right: 10px;
   font-size: 16px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input:placeholder-shown) td:first-child {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input:placeholder-shown) td:first-child {
   transform: translateY(-50%);
   top: 50%;
   left: 8px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input:placeholder-shown) td:first-child label {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input:placeholder-shown) td:first-child label {
   background-color: transparent;
   cursor: text;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) {
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:first-child {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:first-child {
   position: absolute;
   top: 0;
   transform: translateY(-35%);
@@ -96,7 +96,7 @@ form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-st
   vertical-align: unset;
   transition: top 200ms ease-in-out;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:first-child label {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:first-child label {
   position: relative;
   display: unset;
   user-select: none;
@@ -104,30 +104,30 @@ form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-st
   background-color: #f9f9fc;
   font-size: 10px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child {
   display: flex;
   align-items: center;
   gap: 2px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input {
   font-size: 12px;
   outline: none !important;
   border: 1px solid rgb(64, 64, 64);
   border-radius: 2px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=text], form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=password] {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=text], form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=password] {
   width: 200px !important;
   height: auto;
   padding: 7px 5px 6px 5px;
   text-overflow: ellipsis;
   background-color: transparent;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=checkbox] {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=checkbox] {
   width: 15px;
   height: 15px;
   position: relative;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=checkbox]:before {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child input[type=checkbox]:before {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -135,13 +135,13 @@ form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-st
   margin: 0;
   font-size: 12px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child label {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(input) td:last-child label {
   font-size: 12px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(div.infoText) {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(div.infoText) {
   display: none;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(div.button) a {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(div.button) a {
   width: auto;
   height: auto;
   padding: 5px 25px;
@@ -151,7 +151,7 @@ form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-st
   color: black;
   border-radius: 2px;
 }
-form[action="./login.aspx"] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(div.button) a:hover {
+form[path=login] #m_outerContentFrameDiv .ls-content-container .ls-std-island-layout-ltr .island .islandContent table tr:has(div.button) a:hover {
   text-decoration: underline;
   filter: brightness(0.8);
 }
