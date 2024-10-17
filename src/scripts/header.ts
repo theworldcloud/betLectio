@@ -10,6 +10,10 @@ header.editImageLink = function() {
     image.href = menu.href;
 }
 
+function getInitials(name: string) {
+
+}
+
 header.editUserText = function() {
     const container: HTMLDivElement | null = document.querySelector("header .ls-master-header-institution");
     if (!container) return;
@@ -21,14 +25,21 @@ header.editUserText = function() {
 
     const profileText: HTMLSpanElement | null = document.querySelector("#s_m_HeaderContent_MainTitle .ls-hidden-smallscreen");
     const profileButton: HTMLAnchorElement | null = document.querySelector("#s_m_HeaderContent_subnavigator_ctl12");
-    const navbarProfile: HTMLAnchorElement | null = document.querySelector("header .ls-master-header-institution .ls-user-name");
-    if (!profileText || !profileButton || !navbarProfile) {
-        if (!navbarProfile) return;
-        const username = navbarProfile.text;
+    const lastProfile = JSON.parse(localStorage.getItem("lastProfileText") ?? "{}");
 
-        navbarProfile.text = `${school} (${username})`;
+    const navbarProfile: HTMLAnchorElement = document.createElement("a");
+    container.append(navbarProfile);
+
+    if (!profileText || !profileButton) {
+        navbarProfile.text = lastProfile.text && lastProfile.text.includes(school) ? `${lastProfile.text}` : `${school}`;
+
         navbarProfile.href = "";
         navbarProfile.style.pointerEvents = "none";
+
+        if (lastProfile.link && lastProfile.text.includes(school)) {
+            navbarProfile.href = lastProfile.link;
+            navbarProfile.style.pointerEvents = "unset";
+        }
 
         const element = document.createElement("span");
         container.append(element);
@@ -37,8 +48,8 @@ header.editUserText = function() {
     }
 
     const profileInnerText = profileText.innerText;
-    const username = navbarProfile.text;
-    let text = `${school} (${username})`;
+    let text = lastProfile.text && lastProfile.text.includes(school) ? `${lastProfile.text}` : `${school}`;
+    console.log(profileInnerText, text);
 
     if (profileInnerText.includes("Eleven")) {
         const student = profileInnerText
@@ -51,6 +62,7 @@ header.editUserText = function() {
         const name = `${names[0]} ${names[names.length - 1]}`;
 
         text = `${name} - ${grade}, ${school}`;
+        localStorage.setItem("lastProfileText", JSON.stringify({ text: text, link: profileButton.href }));
     } else if (profileInnerText.includes("Læreren")) {
         const teacher = profileInnerText
             .replace("Læreren", "");
@@ -60,6 +72,7 @@ header.editUserText = function() {
         const name = `${names[0]} ${names[names.length - 1]}`;
 
         text = `${name} (${initials}), ${school}`;
+        localStorage.setItem("lastProfileText", JSON.stringify({ text: text, link: profileButton.href }));
     }
 
     navbarProfile.text = text;

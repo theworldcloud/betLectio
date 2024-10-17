@@ -8,6 +8,34 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
     }
     return to.concat(ar || Array.prototype.slice.call(from));
 };
+var init = {};
+init.pathAsFormIdentifier = function () {
+    var location = window.location.pathname;
+    var paths = location.split("/");
+    var path = paths[paths.length - 1];
+    var name = path.split(".")[0];
+    var href = window.location.href
+        .replace(window.location.origin, "")
+        .replace(location, "./".concat(path));
+    var form = document.querySelector("form[action=\"".concat(href, "\"]"));
+    if (!form)
+        return;
+    form.setAttribute("path", name);
+};
+Object.keys(init).forEach(function (func) { return init[func](); });
+var absence = {};
+absence.sortAbsenceColumns = function () {
+    var table = document.querySelector("form[path='fravaerelev_fravaersaarsager'] #s_m_Content_Content_FatabAbsenceFravaerGV tbody");
+    if (!table)
+        return;
+    var elements = Array.from(table.querySelectorAll(" tr:not(:first-child)"));
+    if (elements.length === 0)
+        return;
+    var sortedElements = elements.reverse();
+    elements.forEach(function (element) { return element.remove(); });
+    sortedElements.forEach(function (element) { return table.append(element); });
+};
+Object.keys(absence).forEach(function (func) { return absence[func](); });
 var footer = {};
 footer.changeCopyrightText = function () {
     var element = document.querySelector("#s_m_masterfootermacomSpan a") || document.querySelector("#m_masterfootermacomSpan a");
@@ -64,7 +92,10 @@ header.editImageLink = function () {
         return;
     image.href = menu.href;
 };
+function getInitials(name) {
+}
 header.editUserText = function () {
+    var _a;
     var container = document.querySelector("header .ls-master-header-institution");
     if (!container)
         return;
@@ -74,38 +105,43 @@ header.editUserText = function () {
     container.innerHTML = container.innerHTML.replace("&nbsp;", "").trim();
     var profileText = document.querySelector("#s_m_HeaderContent_MainTitle .ls-hidden-smallscreen");
     var profileButton = document.querySelector("#s_m_HeaderContent_subnavigator_ctl12");
-    var navbarProfile = document.querySelector("header .ls-master-header-institution .ls-user-name");
-    if (!profileText || !profileButton || !navbarProfile) {
-        if (!navbarProfile)
-            return;
-        var username_1 = navbarProfile.text;
-        navbarProfile.text = "".concat(school, " (").concat(username_1, ")");
+    var lastProfile = JSON.parse((_a = localStorage.getItem("lastProfileText")) !== null && _a !== void 0 ? _a : "{}");
+    var navbarProfile = document.createElement("a");
+    container.append(navbarProfile);
+    if (!profileText || !profileButton) {
+        navbarProfile.text = lastProfile.text && lastProfile.text.includes(school) ? "".concat(lastProfile.text) : "".concat(school);
         navbarProfile.href = "";
         navbarProfile.style.pointerEvents = "none";
+        if (lastProfile.link && lastProfile.text.includes(school)) {
+            navbarProfile.href = lastProfile.link;
+            navbarProfile.style.pointerEvents = "unset";
+        }
         var element_1 = document.createElement("span");
         container.append(element_1);
         return;
     }
     var profileInnerText = profileText.innerText;
-    var username = navbarProfile.text;
-    var text = "".concat(school, " (").concat(username, ")");
+    var text = lastProfile.text && lastProfile.text.includes(school) ? "".concat(lastProfile.text) : "".concat(school);
+    console.log(profileInnerText, text);
     if (profileInnerText.includes("Eleven")) {
         var student = profileInnerText
             .replace("Eleven", "")
             .replace("-", "")
             .trim();
-        var _a = student.split(", "), fullname = _a[0], grade = _a[1];
+        var _b = student.split(", "), fullname = _b[0], grade = _b[1];
         var names = fullname.split(" ");
         var name_1 = "".concat(names[0], " ").concat(names[names.length - 1]);
         text = "".concat(name_1, " - ").concat(grade, ", ").concat(school);
+        localStorage.setItem("lastProfileText", JSON.stringify({ text: text, link: profileButton.href }));
     }
     else if (profileInnerText.includes("Læreren")) {
         var teacher = profileInnerText
             .replace("Læreren", "");
-        var _b = teacher.split("-").map(function (str) { return str.trim(); }).filter(function (str) { return str.length > 0; }), initials = _b[0], fullname = _b[1];
+        var _c = teacher.split("-").map(function (str) { return str.trim(); }).filter(function (str) { return str.length > 0; }), initials = _c[0], fullname = _c[1];
         var names = fullname.split(" ");
         var name_2 = "".concat(names[0], " ").concat(names[names.length - 1]);
         text = "".concat(name_2, " (").concat(initials, "), ").concat(school);
+        localStorage.setItem("lastProfileText", JSON.stringify({ text: text, link: profileButton.href }));
     }
     navbarProfile.text = text;
     navbarProfile.href = profileButton.href;
@@ -361,21 +397,6 @@ function _createImpersonationNavLinks(navLinks) {
     container.append.apply(container, links);
 }
 Object.keys(header).forEach(function (func) { return header[func](); });
-var init = {};
-init.pathAsFormIdentifier = function () {
-    var location = window.location.pathname;
-    var paths = location.split("/");
-    var path = paths[paths.length - 1];
-    var name = path.split(".")[0];
-    var href = window.location.href
-        .replace(window.location.origin, "")
-        .replace(location, "./".concat(path));
-    var form = document.querySelector("form[action=\"".concat(href, "\"]"));
-    if (!form)
-        return;
-    form.setAttribute("path", name);
-};
-Object.keys(init).forEach(function (func) { return init[func](); });
 var login = {};
 login.autoRedirect = function () {
     var loginButton = Array.from(document.querySelectorAll("header nav a"))
