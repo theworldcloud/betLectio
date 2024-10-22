@@ -13,6 +13,10 @@ form[path='AdgangIndstillinger'] {
           border-bottom: 1px solid rgb(175, 175, 175);
         }
 
+        tr:has(.noRecord) {
+          border-bottom: none;
+        }
+
         tr {
           border: 0;
           border-bottom: 1px dotted rgb(175, 175, 175);
@@ -54,8 +58,6 @@ form[path='AdgangIndstillinger'] {
               a {
                 color: black;
               }
-
-
 
               img {
                 display: none;

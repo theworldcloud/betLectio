@@ -108,6 +108,10 @@ header.editUserText = function () {
     var lastProfile = JSON.parse((_a = localStorage.getItem("lastProfileText")) !== null && _a !== void 0 ? _a : "{}");
     var navbarProfile = document.createElement("a");
     container.append(navbarProfile);
+    var loginButton = Array.from(document.querySelectorAll("header nav a"))
+        .find(function (link) { return link.text === "Log ind"; });
+    if (loginButton)
+        return;
     if (!profileText || !profileButton) {
         navbarProfile.text = lastProfile.text && lastProfile.text.includes(school) ? "".concat(lastProfile.text) : "".concat(school);
         navbarProfile.href = "";

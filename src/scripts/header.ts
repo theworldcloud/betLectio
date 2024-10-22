@@ -29,7 +29,10 @@ header.editUserText = function() {
 
     const navbarProfile: HTMLAnchorElement = document.createElement("a");
     container.append(navbarProfile);
+    const loginButton: HTMLAnchorElement | undefined = (Array.from(document.querySelectorAll("header nav a")) as Array<HTMLAnchorElement>)
+        .find((link) => link.text === "Log ind");
 
+    if (loginButton) return;
     if (!profileText || !profileButton) {
         navbarProfile.text = lastProfile.text && lastProfile.text.includes(school) ? `${lastProfile.text}` : `${school}`;
 

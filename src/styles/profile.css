@@ -10,6 +10,9 @@ form[path=AdgangIndstillinger] section .islandContent table {
 form[path=AdgangIndstillinger] section .islandContent table tr:has(th) {
   border-bottom: 1px solid rgb(175, 175, 175);
 }
+form[path=AdgangIndstillinger] section .islandContent table tr:has(.noRecord) {
+  border-bottom: none;
+}
 form[path=AdgangIndstillinger] section .islandContent table tr {
   border: 0;
   border-bottom: 1px dotted rgb(175, 175, 175);
