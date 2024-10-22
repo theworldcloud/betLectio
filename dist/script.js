@@ -333,7 +333,12 @@ function _createImpersonationNavLinks(navLinks) {
             var _a = student.split(", "), fullname = _a[0], grade = _a[1];
             var names = fullname.split(" ");
             var name_3 = names[0];
-            text = "".concat(name_3, "'s skema (").concat(grade, ")");
+            if (name_3[name_3.length - 1] === "s") {
+                text = "".concat(name_3, "' skema (").concat(grade, ")");
+            }
+            else {
+                text = "".concat(name_3, "s skema (").concat(grade, ")");
+            }
         }
         else if (impersonationText.includes("Læreren")) {
             var teacher = impersonationText
@@ -342,7 +347,12 @@ function _createImpersonationNavLinks(navLinks) {
             var _b = teacher.map(function (str) { return str.trim(); }), initials = _b[0], fullname = _b[1];
             var names = fullname.split(" ");
             var name_4 = names[0];
-            text = "".concat(name_4, "'s skema (").concat(initials, ")");
+            if (name_4[name_4.length - 1] === "s") {
+                text = "".concat(name_4, "' skema (").concat(initials, ")");
+            }
+            else {
+                text = "".concat(name_4, "s skema (").concat(initials, ")");
+            }
         }
         var element = document.querySelector("#s_m_HeaderContent_subnavigator_ctl01");
         if (!element)
@@ -388,11 +398,11 @@ function _createImpersonationNavLinks(navLinks) {
                 links.splice(0, 0, link);
             if (element.text === "Medlemsskema")
                 links.splice(1, 0, link);
-            if (element.text === "Aktiviteter")
+            if (element.text === "Medlemmer")
                 links.splice(2, 0, link);
             if (element.text === "Modulregnskab")
                 links.splice(3, 0, link);
-            if (element.text === "Medlemmer")
+            if (element.text === "Aktiviteter")
                 links.splice(4, 0, link);
             if (element.text === "Studieplan")
                 links.splice(5, 0, link);
@@ -451,7 +461,10 @@ login.inputPlaceholders = function () {
 Object.keys(login).forEach(function (func) { return login[func](); });
 var profile = {};
 profile.changeLoginTimestamps = function () {
-    var elements = Array.from(document.querySelectorAll("form[path='AdgangIndstillinger'] table tr td:nth-child(2)"));
+    var elements = [];
+    var table = "form[path='AdgangIndstillinger'] table tr";
+    elements.push.apply(elements, Array.from(document.querySelectorAll("".concat(table, " td:nth-child(1)"))));
+    elements.push.apply(elements, Array.from(document.querySelectorAll("".concat(table, " td:nth-child(2)"))));
     elements.forEach(function (element) {
         var _a = element.innerHTML.split(" "), date = _a[0], time = _a[1];
         var _b = date.split("/"), day = _b[0], monthYear = _b[1];

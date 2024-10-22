@@ -285,7 +285,11 @@ function _createImpersonationNavLinks(navLinks: Array<HTMLAnchorElement>) {
             const names = fullname.split(" ");
             const name = names[0];
 
-            text = `${name}'s skema (${grade})`;
+            if (name[name.length - 1] === "s") {
+                text = `${name}' skema (${grade})`;
+            } else {
+                text = `${name}s skema (${grade})`;
+            }
         } else if (impersonationText.includes("Læreren")) {
             const teacher = impersonationText
                 .replace("Læreren", "").trim()
@@ -295,7 +299,11 @@ function _createImpersonationNavLinks(navLinks: Array<HTMLAnchorElement>) {
             const names = fullname.split(" ");
             const name = names[0];
 
-            text = `${name}'s skema (${initials})`;
+            if (name[name.length - 1] === "s") {
+                text = `${name}' skema (${initials})`;
+            } else {
+                text = `${name}s skema (${initials})`;
+            }
         }
 
         const element: HTMLAnchorElement | null = document.querySelector("#s_m_HeaderContent_subnavigator_ctl01");
@@ -342,9 +350,9 @@ function _createImpersonationNavLinks(navLinks: Array<HTMLAnchorElement>) {
             if (link.href === window.location.href) link.classList.add("nav-active");
             if (element.text === "Skema") links.splice(0, 0, link);
             if (element.text === "Medlemsskema") links.splice(1, 0, link);
-            if (element.text === "Aktiviteter") links.splice(2, 0, link);
+            if (element.text === "Medlemmer") links.splice(2, 0, link);
             if (element.text === "Modulregnskab") links.splice(3, 0, link);
-            if (element.text === "Medlemmer") links.splice(4, 0, link);
+            if (element.text === "Aktiviteter") links.splice(4, 0, link);
             if (element.text === "Studieplan")   links.splice(5, 0, link);
         });
     }

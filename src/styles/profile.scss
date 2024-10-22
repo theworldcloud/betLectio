@@ -40,10 +40,25 @@ form[path='AdgangIndstillinger'] {
             border: 0;
             padding: 6px 5px;
             background-color: transparent;
+            white-space: nowrap;
 
-            div {
-              min-height: unset;
-              line-height: normal;
+            &:nth-child(1), &:nth-child(2) {
+              min-width: 115px;
+              max-width: 115px;
+            }
+
+            &:nth-child(3) {
+              min-width: 190px;
+              max-width: unset;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+
+            &:nth-child(4) {
+              min-width: 40px;
+              max-width: 40px;
+              text-align: end;
+            }
 
               &:hover {
                 a {
@@ -55,14 +70,19 @@ form[path='AdgangIndstillinger'] {
                 }
               }
 
-              a {
+              a:hover:after {
+                color: #0e65ba !important;
+              }
+
+              a:after {
                 color: black;
+                content: "Fjern";
+                text-decoration: underline;
               }
 
               img {
                 display: none;
               }
-            }
           }
         }
       }

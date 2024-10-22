@@ -483,21 +483,38 @@ form[path=AdgangIndstillinger] section .islandContent table tr td {
   border: 0;
   padding: 6px 5px;
   background-color: transparent;
+  white-space: nowrap;
 }
-form[path=AdgangIndstillinger] section .islandContent table tr td div {
-  min-height: unset;
-  line-height: normal;
+form[path=AdgangIndstillinger] section .islandContent table tr td:nth-child(1), form[path=AdgangIndstillinger] section .islandContent table tr td:nth-child(2) {
+  min-width: 115px;
+  max-width: 115px;
 }
-form[path=AdgangIndstillinger] section .islandContent table tr td div:hover a {
+form[path=AdgangIndstillinger] section .islandContent table tr td:nth-child(3) {
+  min-width: 190px;
+  max-width: unset;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+form[path=AdgangIndstillinger] section .islandContent table tr td:nth-child(4) {
+  min-width: 40px;
+  max-width: 40px;
+  text-align: end;
+}
+form[path=AdgangIndstillinger] section .islandContent table tr td:hover a {
   text-decoration: underline !important;
   color: #0e65ba !important;
   background-color: transparent !important;
   outline: none !important;
   border: none !important;
 }
-form[path=AdgangIndstillinger] section .islandContent table tr td div a {
-  color: black;
+form[path=AdgangIndstillinger] section .islandContent table tr td a:hover:after {
+  color: #0e65ba !important;
 }
-form[path=AdgangIndstillinger] section .islandContent table tr td div img {
+form[path=AdgangIndstillinger] section .islandContent table tr td a:after {
+  color: black;
+  content: "Fjern";
+  text-decoration: underline;
+}
+form[path=AdgangIndstillinger] section .islandContent table tr td img {
   display: none;
 }

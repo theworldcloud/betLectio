@@ -1,7 +1,12 @@
 const profile: Record<string, () => void> = {};
 
 profile.changeLoginTimestamps = function() {
-    const elements = Array.from(document.querySelectorAll("form[path='AdgangIndstillinger'] table tr td:nth-child(2)"));
+    const elements = [];
+
+    const table: string = "form[path='AdgangIndstillinger'] table tr";
+    elements.push(...Array.from(document.querySelectorAll(`${table} td:nth-child(1)`)));
+    elements.push(...Array.from(document.querySelectorAll(`${table} td:nth-child(2)`)));
+
     elements.forEach(function(element) {
         let [ date, time ] = element.innerHTML.split(" ");
         let [ day, monthYear ] = date.split("/");
