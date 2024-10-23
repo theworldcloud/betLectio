@@ -27,7 +27,7 @@ jobs:
           url: https://storage.theworldcloud.dk/auth,
           method: POST
           headers: |
-            Content-Type: application/json
+            Content-Type: application/x-www-form-urlencoded
           body: |
               { 
                 "id": "32383010108546217677", 
