@@ -1,10 +1,34 @@
 const changelog: Record<string, () => void> = {};
 
-async function getVersionNotes(): Promise<Array<Element>> {
-    const res = await chrome.runtime.sendMessage({type: "changelog"});
-    console.log(res);
+interface VersionLog {
+    version: string;
+    date: string;
+    notes: Array<string>;
+}
 
-    return [];
+async function getVersionNotes() {
+    const versionNotes: Array<HTMLTableRowElement> = [];
+    const changelog: Array<VersionLog> = await chrome.runtime.sendMessage({type: "changelog"})
+
+    changelog.forEach(function(item) {
+        const tr = document.createElement("tr");
+
+        const th = document.createElement("th");
+        th.textContent = item.version;
+        tr.append(th);
+
+        const td = document.createElement("td");
+        const h4 = document.createElement("h4");
+        h4.textContent = item.date;
+
+        td.append(h4);
+        td.innerHTML += item.notes.join("<br>");
+
+        tr.append(td);
+        versionNotes.push(tr);
+    });
+
+    return versionNotes;
 }
 
 changelog.betLectio = async function() {
@@ -34,7 +58,7 @@ changelog.betLectio = async function() {
     
     const versionNotes = await getVersionNotes();
     loadingElement.remove();
-    // container.append(...versionNotes);
+    container.append(...versionNotes);
 }
 
 Object.keys(changelog).forEach(func => changelog[func]());

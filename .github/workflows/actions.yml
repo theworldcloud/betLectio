@@ -1,0 +1,38 @@
+name: Changelog
+
+on:
+  push:
+    branches:
+      - main
+
+    workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  auth:
+    name: Authentication
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.head_commit.message, '[version]')
+    steps:
+      - name: Authenticate client credentials
+        id: auth
+        uses: muhfaris/request-action@v1
+        with:
+          url: https://storage.theworldcloud.dk/auth,
+          body: |
+             {
+               "id": "32383010108546217677",
+               "secret": "16I7MZ8z4P1S438vsXDLZQUGrhVjRa7hgYLIdsroB"
+             }
+          method: POST
+
+      - name: Show API Response Status
+          run: |
+            echo "Response Status: ${{ steps.auth.outputs.response-status }}"
+
+      - name: Show API Response Data
+        run: |
+          echo "Response Data: ${{ steps.auth.outputs.response-data }}"

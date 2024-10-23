@@ -75,14 +75,28 @@ Object.keys(absence).forEach(function (func) { return absence[func](); });
 var changelog = {};
 function getVersionNotes() {
     return __awaiter(this, void 0, void 0, function () {
-        var res;
+        var versionNotes, changelog;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, chrome.runtime.sendMessage({ type: "changelog" })];
+                case 0:
+                    versionNotes = [];
+                    return [4 /*yield*/, chrome.runtime.sendMessage({ type: "changelog" })];
                 case 1:
-                    res = _a.sent();
-                    console.log(res);
-                    return [2 /*return*/, []];
+                    changelog = _a.sent();
+                    changelog.forEach(function (item) {
+                        var tr = document.createElement("tr");
+                        var th = document.createElement("th");
+                        th.textContent = item.version;
+                        tr.append(th);
+                        var td = document.createElement("td");
+                        var h4 = document.createElement("h4");
+                        h4.textContent = item.date;
+                        td.append(h4);
+                        td.innerHTML += item.notes.join("<br>");
+                        tr.append(td);
+                        versionNotes.push(tr);
+                    });
+                    return [2 /*return*/, versionNotes];
             }
         });
     });
@@ -118,6 +132,7 @@ changelog.betLectio = function () {
                 case 1:
                     versionNotes = _a.sent();
                     loadingElement.remove();
+                    container.append.apply(container, versionNotes);
                     return [2 /*return*/];
             }
         });

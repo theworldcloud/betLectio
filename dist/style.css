@@ -1,4 +1,7 @@
 
+form[path=VersionInfo] #contenttable > div {
+  display: none !important;
+}
 form[path=VersionInfo] table tr td {
   padding-bottom: 15px;
 }
