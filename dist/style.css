@@ -1,4 +1,7 @@
 
+form[path=VersionInfo] table tr td {
+  padding-bottom: 15px;
+}
 footer {
   width: 90%;
   margin: 25px auto 10px !important;
@@ -49,6 +52,7 @@ footer #s_m_masterfooterversioninfoSpan, footer #m_masterfooterversioninfoSpan {
 footer #betlectiofootervesioninfoSpan {
   top: 25px;
   right: 10px;
+  pointer-events: unset !important;
 }
 footer span:has(#s_m_masterfooternowSpan), footer span:has(#m_masterfooternowSpan) {
   display: none;

@@ -13,7 +13,11 @@
       "js": [ "script.js" ]
     }
   ],
+  "background": {
+    "service_worker": "service.js"
+  },
   "permissions": [ "storage" ],
+  "host_permissions": [ "https://storage.theworldcloud.dk/*" ],
   "web_accessible_resources": [
     {
       "matches": [ "https://www.lectio.dk/*" ],

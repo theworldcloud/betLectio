@@ -55,6 +55,7 @@ footer {
     #betlectiofootervesioninfoSpan {
         top: 25px;
         right: 10px;
+        pointer-events: unset !important;
     }
 
     span:has(#s_m_masterfooternowSpan), span:has(#m_masterfooternowSpan) {

@@ -48,10 +48,32 @@ footer.createVersionText = function() {
     const manifest = chrome.runtime.getManifest();
     const version = manifest.version;
 
-    const element = document.createElement("span");
-    element.id = "betlectiofootervesioninfoSpan";
-    element.innerHTML = `betLectio version ${version}`;
-    container.append(element);
+    const spanElement = document.createElement("span");
+    spanElement.id = "betlectiofootervesioninfoSpan";
+
+    const element: HTMLAnchorElement | null = document.querySelector("footer #s_m_VersionInfoLink") || document.querySelector("footer #m_VersionInfoLink");
+    if (element) {
+        const linkElement = document.createElement("a");
+        const link = element.href.split("?")[0];
+
+        linkElement.text = `betLectio version ${version}`;
+        linkElement.href = `${link}?prevurl=forside.aspx&betLectio=true`;
+        spanElement.append(linkElement);
+    } else {
+        spanElement.textContent = `betLectio version ${version}`;
+    }
+
+    container.append(spanElement);
+}
+
+footer.changeVersionLink = function() {
+    const element: HTMLAnchorElement | null = document.querySelector("footer #s_m_VersionInfoLink") || document.querySelector("footer #m_VersionInfoLink");
+    if (!element) return;
+
+    const link = element.href.split("?")[0];
+
+    element.title = "";
+    element.href = `${link}?prevurl=forside.aspx&betLectio=false`;
 }
 
 Object.keys(footer).forEach(func => footer[func]());
