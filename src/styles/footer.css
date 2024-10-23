@@ -1,6 +1,6 @@
 footer {
   width: 90%;
-  margin: 25px auto 10px !important;
+  margin: 25px auto 15px !important;
   padding: 10px 10px !important;
   height: 25px;
   position: relative !important;
@@ -49,6 +49,18 @@ footer #betlectiofootervesioninfoSpan {
   top: 25px;
   right: 10px;
   pointer-events: unset !important;
+}
+footer #betlectiofootervesionUpdate {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  pointer-events: unset !important;
+}
+footer #betlectiofootervesionUpdate:hover {
+  color: #0e65ba !important;
+  cursor: pointer;
+  text-decoration: underline !important;
 }
 footer span:has(#s_m_masterfooternowSpan), footer span:has(#m_masterfooternowSpan) {
   display: none;

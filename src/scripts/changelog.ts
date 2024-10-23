@@ -6,11 +6,20 @@ interface VersionLog {
     notes: Array<string>;
 }
 
+function parseVersion(version: string): number {
+    const [ major, minor, patch ] = version.split(".");
+    return parseFloat(`${major}.${minor}${patch}`);
+}
+
 async function getVersionNotes() {
     const versionNotes: Array<HTMLTableRowElement> = [];
     const changelog: Array<VersionLog> = await chrome.runtime.sendMessage({type: "changelog"})
 
+    const version = chrome.runtime.getManifest().version;
     changelog.forEach(function(item) {
+        if (parseVersion(item.version) > parseVersion(version)) return;
+        if (item.notes.length === 0) item.notes.push("Ingen versionnoter.")
+
         const tr = document.createElement("tr");
 
         const th = document.createElement("th");
@@ -37,7 +46,6 @@ changelog.betLectio = async function() {
     if (!key) return;
 
     const value = JSON.parse(key.replace("betLectio=", ""));
-    console.log(value);
     if (!value) return;
 
     const input = document.querySelector("input#m_Content_HideFejlRettetChk");
@@ -53,7 +61,7 @@ changelog.betLectio = async function() {
     Array.from(container.querySelectorAll("tr")).forEach(item => item.remove());
 
     const loadingElement = document.createElement("span");
-    loadingElement.textContent = "Indlæser versions noter...";
+    loadingElement.textContent = "Indlæser...";
     container.append(loadingElement);
     
     const versionNotes = await getVersionNotes();

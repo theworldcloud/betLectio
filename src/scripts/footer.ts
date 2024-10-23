@@ -1,3 +1,4 @@
+
 const footer: Record<string, () => void> = {};
 
 footer.changeCopyrightText = function() {
@@ -64,6 +65,24 @@ footer.createVersionText = function() {
     }
 
     container.append(spanElement);
+}
+
+
+function updateVersion() {
+    console.log("update")
+}
+
+footer.createUpdateButton = function() {
+    const container = document.querySelector("footer");
+    if (!container) return;
+
+    const element = document.createElement("span");
+    element.id = "betlectiofootervesionUpdate";
+    element.textContent = "Opdater betLectio";
+    // element.href = "file:///D:/Workbench/betLectio/dist/update.bat";
+    element.onclick = updateVersion;
+
+    container.append(element);
 }
 
 footer.changeVersionLink = function() {

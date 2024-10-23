@@ -73,9 +73,13 @@ absence.sortAbsenceColumns = function () {
 };
 Object.keys(absence).forEach(function (func) { return absence[func](); });
 var changelog = {};
+function parseVersion(version) {
+    var _a = version.split("."), major = _a[0], minor = _a[1], patch = _a[2];
+    return parseFloat("".concat(major, ".").concat(minor).concat(patch));
+}
 function getVersionNotes() {
     return __awaiter(this, void 0, void 0, function () {
-        var versionNotes, changelog;
+        var versionNotes, changelog, version;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
@@ -83,7 +87,12 @@ function getVersionNotes() {
                     return [4 /*yield*/, chrome.runtime.sendMessage({ type: "changelog" })];
                 case 1:
                     changelog = _a.sent();
+                    version = chrome.runtime.getManifest().version;
                     changelog.forEach(function (item) {
+                        if (parseVersion(item.version) > parseVersion(version))
+                            return;
+                        if (item.notes.length === 0)
+                            item.notes.push("Ingen versionnoter.");
                         var tr = document.createElement("tr");
                         var th = document.createElement("th");
                         th.textContent = item.version;
@@ -112,7 +121,6 @@ changelog.betLectio = function () {
                     if (!key)
                         return [2 /*return*/];
                     value = JSON.parse(key.replace("betLectio=", ""));
-                    console.log(value);
                     if (!value)
                         return [2 /*return*/];
                     input = document.querySelector("input#m_Content_HideFejlRettetChk");
@@ -126,7 +134,7 @@ changelog.betLectio = function () {
                         return [2 /*return*/];
                     Array.from(container.querySelectorAll("tr")).forEach(function (item) { return item.remove(); });
                     loadingElement = document.createElement("span");
-                    loadingElement.textContent = "Indlæser versions noter...";
+                    loadingElement.textContent = "Indlæser...";
                     container.append(loadingElement);
                     return [4 /*yield*/, getVersionNotes()];
                 case 1:
@@ -194,6 +202,20 @@ footer.createVersionText = function () {
         spanElement.textContent = "betLectio version ".concat(version);
     }
     container.append(spanElement);
+};
+function updateVersion() {
+    console.log("update");
+}
+footer.createUpdateButton = function () {
+    var container = document.querySelector("footer");
+    if (!container)
+        return;
+    var element = document.createElement("span");
+    element.id = "betlectiofootervesionUpdate";
+    element.textContent = "Opdater betLectio";
+    // element.href = "file:///D:/Workbench/betLectio/dist/update.bat";
+    element.onclick = updateVersion;
+    container.append(element);
 };
 footer.changeVersionLink = function () {
     var element = document.querySelector("footer #s_m_VersionInfoLink") || document.querySelector("footer #m_VersionInfoLink");

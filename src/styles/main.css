@@ -5,7 +5,7 @@
   width: 100% !important;
 }
 
-#s_m_helptipDiv {
+#s_m_helptipDiv, #m_helptipDiv {
   display: none;
 }
 
