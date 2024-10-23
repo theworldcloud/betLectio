@@ -17,6 +17,9 @@ jobs:
     runs-on: ubuntu-latest
     if: startsWith(github.event.head_commit.message, '[version]')
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Authenticate client credentials
         id: auth
         uses: muhfaris/request-action@v1
