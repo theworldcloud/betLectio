@@ -29,10 +29,7 @@ jobs:
           headers: |
             Content-Type: application/json
           body: |
-             {
-               "id": "32383010108546217677",
-               "secret": "16I7MZ8z4P1S438vsXDLZQUGrhVjRa7hgYLIdsroB"
-             }
+             { "id": "32383010108546217677", "secret": "16I7MZ8z4P1S438vsXDLZQUGrhVjRa7hgYLIdsroB" }
 
       - name: Show API Response Status
         run: |
