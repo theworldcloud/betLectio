@@ -30,8 +30,8 @@ jobs:
           method: POST
 
       - name: Show API Response Status
-          run: |
-            echo "Response Status: ${{ steps.auth.outputs.response-status }}"
+        run: |
+          echo "Response Status: ${{ steps.auth.outputs.response-status }}"
 
       - name: Show API Response Data
         run: |
