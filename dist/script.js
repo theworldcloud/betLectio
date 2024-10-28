@@ -554,6 +554,20 @@ function _createImpersonationNavLinks(navLinks) {
     container.append.apply(container, links);
 }
 Object.keys(header).forEach(function (func) { return header[func](); });
+var home = {};
+home.absenceText = function () {
+    var container = document.querySelector("#s_m_Content_Content_RegistreringerInfo");
+    if (!container)
+        return;
+    var absenceElement = document.querySelector("td:nth-child(2) a span");
+    var lecturesElement = container.querySelector("td:last-child");
+    if (!absenceElement || !lecturesElement)
+        return;
+    var lectures = parseInt(lecturesElement.textContent || "0");
+    var text = lectures > 1 ? "moduler" : "modul";
+    absenceElement.textContent = "".concat(lectures, " ").concat(text, " mangler frav\u00E6rs\u00E5rsag");
+};
+Object.keys(home).forEach(function (func) { return home[func](); });
 var login = {};
 login.autoRedirect = function () {
     var loginButton = Array.from(document.querySelectorAll("header nav a"))

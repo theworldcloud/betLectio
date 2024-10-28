@@ -1,0 +1,24 @@
+form[path=forside] #s_m_Content_Content_aktueltIsland_pa .dashboardLinkHeader {
+  display: none;
+}
+form[path=forside] #s_m_Content_Content_undervisningIsland_pa:has(#s_m_Content_Content_RegistreringerInfo) div:first-child {
+  display: none;
+}
+form[path=forside] #s_m_Content_Content_undervisningIsland_pa:has(#s_m_Content_Content_RegistreringerInfo) #s_m_Content_Content_RegistreringerInfo td:first-child, form[path=forside] #s_m_Content_Content_undervisningIsland_pa:has(#s_m_Content_Content_RegistreringerInfo) #s_m_Content_Content_RegistreringerInfo td:last-child {
+  display: none;
+}
+form[path=forside] #s_m_Content_Content_undervisningIsland_pa:has(#s_m_Content_Content_RegistreringerInfo) #s_m_Content_Content_RegistreringerInfo td {
+  text-align: center;
+}
+form[path=forside] #s_m_Content_Content_undervisningIsland_pa:has(#s_m_Content_Content_RegistreringerInfo) #s_m_Content_Content_RegistreringerInfo td a {
+  color: #e46f61;
+  font-weight: 600;
+  background: transparent !important;
+  outline: 0 !important;
+}
+form[path=forside] #s_m_Content_Content_undervisningIsland_pa:has(#s_m_Content_Content_RegistreringerInfo) #s_m_Content_Content_RegistreringerInfo td a:hover {
+  text-decoration: underline;
+}
+form[path=forside] #s_m_Content_Content_undervisningIsland_pa:has(#s_m_Content_Content_RegistreringerInfo) #s_m_Content_Content_RegistreringerInfo td a span {
+  color: #e46f61;
+}
