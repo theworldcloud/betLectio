@@ -11,25 +11,27 @@ form[path="forside"] {
     }
 
     #s_m_Content_Content_RegistreringerInfo {
-      td:first-child, td:last-child {
-        display: none;
-      }
+      #s_m_Content_Content_RegistreringerInfo_ctl00_DashBoardItem4 {
+        td:first-child, td:last-child {
+          display: none;
+        }
 
-      td {
-        text-align: center;
+        td {
+          text-align: center;
 
-        a {
-          color: #e46f61;
-          font-weight: 600;
-          background: transparent !important;
-          outline: 0 !important;
-
-          &:hover {
-            text-decoration: underline;
-          }
-
-          span {
+          a {
             color: #e46f61;
+            font-weight: 600;
+            background: transparent !important;
+            outline: 0 !important;
+
+            &:hover {
+              text-decoration: underline;
+            }
+
+            span {
+              color: #e46f61;
+            }
           }
         }
       }

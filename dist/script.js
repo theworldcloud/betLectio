@@ -559,7 +559,7 @@ home.absenceText = function () {
     var container = document.querySelector("#s_m_Content_Content_RegistreringerInfo");
     if (!container)
         return;
-    var absenceElement = document.querySelector("td:nth-child(2) a span");
+    var absenceElement = container.querySelector("td:nth-child(2) a span");
     var lecturesElement = container.querySelector("td:last-child");
     if (!absenceElement || !lecturesElement)
         return;
