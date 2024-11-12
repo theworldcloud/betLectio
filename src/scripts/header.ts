@@ -375,7 +375,7 @@ header.createUpdateButton = async function() {
     container.append(divider);
 
     const element = document.createElement("a");
-    element.href = `https://github.com/theworldcloud/betLectio/releases#v${cloudVersion}`;
+    element.href = `https://github.com/theworldcloud/betLectio/releases`;
     element.text = `Opdater betLectio (v${localVersion} ➔ v${cloudVersion})`;
 
     container.append(element);

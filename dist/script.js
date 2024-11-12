@@ -558,7 +558,7 @@ header.createUpdateButton = function () {
                     divider = document.createElement("span");
                     container.append(divider);
                     element = document.createElement("a");
-                    element.href = "https://github.com/theworldcloud/betLectio/releases#v".concat(cloudVersion);
+                    element.href = "https://github.com/theworldcloud/betLectio/releases";
                     element.text = "Opdater betLectio (v".concat(localVersion, " \u2794 v").concat(cloudVersion, ")");
                     container.append(element);
                     return [2 /*return*/];

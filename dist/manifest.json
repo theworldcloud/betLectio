@@ -1,7 +1,7 @@
 {
   "name": "betLectio",
   "manifest_version": 3,
-  "version": "0.2.4",
+  "version": "1.2.4",
   "description": "Smart design for lectio",
   "content_scripts": [
     {
