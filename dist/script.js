@@ -87,6 +87,7 @@ function getVersionNotes() {
                     return [4 /*yield*/, chrome.runtime.sendMessage({ type: "changelog" })];
                 case 1:
                     changelog = _a.sent();
+                    changelog.sort(function (a, b) { return parseVersion(b.version) - parseVersion(a.version); });
                     version = chrome.runtime.getManifest().version;
                     changelog.forEach(function (item) {
                         if (parseVersion(item.version) > parseVersion(version))

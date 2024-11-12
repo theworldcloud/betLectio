@@ -14,6 +14,7 @@ function parseVersion(version: string): number {
 async function getVersionNotes() {
     const versionNotes: Array<HTMLTableRowElement> = [];
     const changelog: Array<VersionLog> = await chrome.runtime.sendMessage({type: "changelog"})
+    changelog.sort((a, b) => parseVersion(b.version) - parseVersion(a.version));
 
     const version = chrome.runtime.getManifest().version;
     changelog.forEach(function(item) {
