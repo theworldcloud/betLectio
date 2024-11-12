@@ -52,7 +52,6 @@ header.editUserText = function() {
 
     const profileInnerText = profileText.innerText;
     let text = lastProfile.text && lastProfile.text.includes(school) ? `${lastProfile.text}` : `${school}`;
-    console.log(profileInnerText, text);
 
     if (profileInnerText.includes("Eleven")) {
         const student = profileInnerText
@@ -358,6 +357,28 @@ function _createImpersonationNavLinks(navLinks: Array<HTMLAnchorElement>) {
     }
 
     container.append(...links);
+}
+
+header.createUpdateButton = async function() {
+    const container = document.querySelector("header .ls-master-header-institution");
+    if (!container) return;
+
+    const localVersion = chrome.runtime.getManifest().version;
+    const cloudVersion: string = await chrome.runtime.sendMessage({type: "version"});
+
+    const localVersionNumber = parseVersion(localVersion);
+    const cloudVersionNumber = parseVersion(cloudVersion);
+
+    if (localVersionNumber >= cloudVersionNumber) return;
+
+    const divider = document.createElement("span");
+    container.append(divider);
+
+    const element = document.createElement("a");
+    element.href = `https://github.com/theworldcloud/betLectio/releases#v${cloudVersion}`;
+    element.text = `Opdater betLectio (v${localVersion} ➔ v${cloudVersion})`;
+
+    container.append(element);
 }
 
 Object.keys(header).forEach(func => header[func]());

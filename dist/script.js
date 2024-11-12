@@ -203,20 +203,6 @@ footer.createVersionText = function () {
     }
     container.append(spanElement);
 };
-function updateVersion() {
-    console.log("update");
-}
-footer.createUpdateButton = function () {
-    var container = document.querySelector("footer");
-    if (!container)
-        return;
-    var element = document.createElement("span");
-    element.id = "betlectiofootervesionUpdate";
-    element.textContent = "Opdater betLectio";
-    // element.href = "file:///D:/Workbench/betLectio/dist/update.bat";
-    element.onclick = updateVersion;
-    container.append(element);
-};
 footer.changeVersionLink = function () {
     var element = document.querySelector("footer #s_m_VersionInfoLink") || document.querySelector("footer #m_VersionInfoLink");
     if (!element)
@@ -269,7 +255,6 @@ header.editUserText = function () {
     }
     var profileInnerText = profileText.innerText;
     var text = lastProfile.text && lastProfile.text.includes(school) ? "".concat(lastProfile.text) : "".concat(school);
-    console.log(profileInnerText, text);
     if (profileInnerText.includes("Eleven")) {
         var student = profileInnerText
             .replace("Eleven", "")
@@ -553,6 +538,34 @@ function _createImpersonationNavLinks(navLinks) {
     }
     container.append.apply(container, links);
 }
+header.createUpdateButton = function () {
+    return __awaiter(this, void 0, void 0, function () {
+        var container, localVersion, cloudVersion, localVersionNumber, cloudVersionNumber, divider, element;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    container = document.querySelector("header .ls-master-header-institution");
+                    if (!container)
+                        return [2 /*return*/];
+                    localVersion = chrome.runtime.getManifest().version;
+                    return [4 /*yield*/, chrome.runtime.sendMessage({ type: "version" })];
+                case 1:
+                    cloudVersion = _a.sent();
+                    localVersionNumber = parseVersion(localVersion);
+                    cloudVersionNumber = parseVersion(cloudVersion);
+                    if (localVersionNumber >= cloudVersionNumber)
+                        return [2 /*return*/];
+                    divider = document.createElement("span");
+                    container.append(divider);
+                    element = document.createElement("a");
+                    element.href = "https://github.com/theworldcloud/betLectio/releases#v".concat(cloudVersion);
+                    element.text = "Opdater betLectio (v".concat(localVersion, " \u2794 v").concat(cloudVersion, ")");
+                    container.append(element);
+                    return [2 /*return*/];
+            }
+        });
+    });
+};
 Object.keys(header).forEach(function (func) { return header[func](); });
 var home = {};
 home.absenceText = function () {

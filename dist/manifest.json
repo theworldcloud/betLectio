@@ -1,1 +1,27 @@
-{"name":"betLectio","manifest_version":3,"version":"0.2.4","description":"Smart design for lectio","content_scripts":[{"matches":["https://www.lectio.dk/*"],"css":["style.css"]},{"matches":["https://www.lectio.dk/*"],"js":["script.js"]}],"background":{"service_worker":"service.js"},"permissions":["storage"],"host_permissions":["https://storage.theworldcloud.dk/*"],"web_accessible_resources":[{"matches":["https://www.lectio.dk/*"],"resources":["*"]}]}
+{
+  "name": "betLectio",
+  "manifest_version": 3,
+  "version": "0.2.4",
+  "description": "Smart design for lectio",
+  "content_scripts": [
+    {
+      "matches": [ "https://www.lectio.dk/*" ],
+      "css": [ "style.css" ]
+    },
+    {
+      "matches": [ "https://www.lectio.dk/*" ],
+      "js": [ "script.js" ]
+    }
+  ],
+  "background": {
+    "service_worker": "service.js"
+  },
+  "permissions": [ "storage" ],
+  "host_permissions": [ "https://storage.theworldcloud.dk/*" ],
+  "web_accessible_resources": [
+    {
+      "matches": [ "https://www.lectio.dk/*" ],
+      "resources": [ "*" ]
+    }
+  ]
+}
